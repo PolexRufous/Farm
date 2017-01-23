@@ -1,11 +1,10 @@
 package com.farm.database.kassa;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table
-
+@Entity
 public class OperationDay {
     @Id
     @GeneratedValue
