@@ -49,6 +49,9 @@ class OperationDay {
     @Past
     private Date dateOfDay;
 
+    @OneToMany(mappedBy = "operationDay")
+    private List<Operation> operations;
+
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)
     private List<DebetOperation> debitOperations;
