@@ -10,10 +10,10 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum Account
+public enum AccountType
 {
-  CASH(30, "Central cash department"),
-  BANK_ACCOUNT(31, "Main bank account");
+  CASH(30, "central.cash.department"),
+  BANK_ACCOUNT(31, "main.bank.account");
 
   private int accountCode;
   private String description;

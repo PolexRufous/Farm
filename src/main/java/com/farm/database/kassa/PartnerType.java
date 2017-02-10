@@ -13,9 +13,9 @@ import lombok.Getter;
 public enum PartnerType
 {
   //TODO bind description with property keys for i18n
-  WORKER("Worker"),
-  SELLER("Seller"),
-  BUYER("Buyer");
+  WORKER("partner.worker"),
+  SELLER("partner.seller"),
+  BUYER("partner.buyer");
 
   private String description;
 }

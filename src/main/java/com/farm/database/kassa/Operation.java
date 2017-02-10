@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Farm project. 2017
@@ -39,12 +40,12 @@ public class Operation
   @Column(name = "ACCOUNT_FROM", nullable = false)
   @Enumerated(EnumType.STRING)
   @NotNull
-  private Account accountFrom;
+  private AccountType accountTypeFrom;
 
   @Column(name = "ACCOUNT_TO", nullable = false)
   @Enumerated(EnumType.STRING)
   @NotNull
-  private Account accountTo;
+  private AccountType accountTypeTo;
 
   @Column(name = "AMOUNT", nullable = false)
   @DecimalMin(value = "0.0")
@@ -63,7 +64,9 @@ public class Operation
 
   @PrePersist
   private void setMinAmount(){
-    amount = new BigDecimal("0.0");
+    if (Objects.isNull(amount)){
+      amount = new BigDecimal("0.0");
+    }
   }
 
 }

@@ -1,10 +1,12 @@
 package com.farm.environment.configuration;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @Configuration
 @PropertySources({
@@ -15,5 +17,17 @@ public class FarmPropertySource {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource =
+                new ReloadableResourceBundleMessageSource();
+        messageSource.setBasenames(
+                "/database/accountDescriptions",
+                "/database/accountDescriptions"
+        );
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
 }
