@@ -1,6 +1,8 @@
 package com.farm.database.kassa;
 
-import lombok.Data;
+import static java.util.Objects.isNull;
+
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +17,8 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.util.Objects;
+
+import lombok.Data;
 
 /**
  * Farm project. 2017
@@ -64,7 +66,7 @@ public class Operation
 
   @PrePersist
   private void setMinAmount(){
-    if (Objects.isNull(amount)){
+    if (isNull(amount)){
       amount = new BigDecimal("0.0");
     }
   }

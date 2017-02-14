@@ -47,16 +47,10 @@ class OperationDay {
 
     @Column
     @Past
+    @NotNull
     private Date dateOfDay;
 
-    @OneToMany(mappedBy = "operationDay")
-    private List<Operation> operations;
-
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "operationDay", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<DebetOperation> debitOperations;
-
-    @OneToMany
-    private List<CreditOperation> creditOperations;
-
+    private List<Operation> operations;
 }

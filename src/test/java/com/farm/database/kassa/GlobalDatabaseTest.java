@@ -2,6 +2,7 @@ package com.farm.database.kassa;
 
 import com.farm.environment.configuration.FarmDatabaseTest;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -11,8 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class GlobalDatabaseTest
 {
   @Test
-  @ExpectedDatabase("/database/tables/emptyDatabase.xml")
-  public void testFarmDatabaseExist() throws Exception
+  @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT,
+          value = "/database/tables/emptyDatabase.xml",
+          table = "KASSA_OPERATION_DAY")
+  public void testFarmDatabaseExistOperDay() throws Exception
   {
   }
 }
