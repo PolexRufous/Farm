@@ -1,6 +1,7 @@
-package com.farm.database.kassa;
+package com.farm.database.accounts;
 
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import java.math.BigDecimal;
 
 import static java.util.Objects.isNull;
@@ -33,6 +35,8 @@ public class AccountBalance
   @JoinColumns({
           @JoinColumn(name = "ACCOUNT_NUMBER", referencedColumnName = "ACCOUNT_NUMBER")
   })
+  @NonNull
+  @Valid
   private Account account;
 
   @Column(name = "BALANCE_AMOUNT", nullable = false)

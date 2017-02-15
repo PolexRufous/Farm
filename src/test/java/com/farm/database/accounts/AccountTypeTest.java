@@ -1,4 +1,4 @@
-package com.farm.database.kassa;
+package com.farm.database.accounts;
 
 import com.farm.environment.configuration.FarmPropertySource;
 import org.junit.Test;

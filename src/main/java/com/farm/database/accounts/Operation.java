@@ -1,6 +1,4 @@
-package com.farm.database.kassa;
-
-import static java.util.Objects.isNull;
+package com.farm.database.accounts;
 
 import java.math.BigDecimal;
 
@@ -13,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
@@ -26,7 +23,7 @@ import lombok.Data;
  * Description:
  */
 @Entity
-@Table(name = "ACC_OPERATION")
+@Table(name = "OPERATION")
 @Data
 public class Operation
 {
@@ -41,34 +38,34 @@ public class Operation
           @JoinColumn(name = "OPERATION_DAY_DATE", nullable = false, referencedColumnName = "DATE")
   })
   @NotNull
+  @Valid
   private OperationDay operationDay;
 
-  @Column(name = "ACCOUNT_FROM", nullable = false)
-  @Enumerated(EnumType.STRING)
   @NotNull
-  private AccountType accountTypeFrom;
+  @Valid
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "ACCOUNT_TO", nullable = false, referencedColumnName = "ACCOUNT_NUMBER")
+  private Account accountFrom;
 
-  @Column(name = "ACCOUNT_TO", nullable = false)
-  @Enumerated(EnumType.STRING)
   @NotNull
-  private AccountType accountTypeTo;
+  @Valid
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "ACCOUNT_TO", nullable = false, referencedColumnName = "ACCOUNT_NUMBER")
+  private Account accountTo;
 
   @Column(name = "AMOUNT", nullable = false)
   @DecimalMin(value = "0.0")
   @NotNull
   private BigDecimal amount;
 
-  @ManyToOne
   @NotNull
   @Valid
-  @JoinColumns({
-          @JoinColumn(name = "PARTNER_ID", nullable = false, referencedColumnName = "ID")
-  })
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "PARTNER_ID", nullable = false, referencedColumnName = "ID")
   private Partner partner;
 
   @Column(name = "OPERATION_TYPE")
   @NotNull
   @Enumerated(EnumType.STRING)
   private OperationType operationType;
-
 }

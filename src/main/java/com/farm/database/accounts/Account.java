@@ -1,17 +1,12 @@
-package com.farm.database.kassa;
+package com.farm.database.accounts;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import static java.util.Objects.isNull;
 
 /**
  * Farm project. 2017
@@ -27,7 +22,7 @@ public class Account
   @Column(name = "ID")
   private Long id;
 
-  @Column(name = "ACCOUNT_NUMBER", unique = true)
+  @Column(name = "ACCOUNT_NUMBER", unique = true, nullable = false)
   private String accountNumber;
 
   @Column(name = "ACCOUNT_TYPE")
@@ -35,9 +30,18 @@ public class Account
   private AccountType accountType;
 
   @ManyToOne
+  @Valid
+  @NotNull
   @JoinColumns({
           @JoinColumn(name = "PARTNER_ID", referencedColumnName = "ID")
   })
   private Partner partner;
+
+  @PrePersist
+  private void setAccountNumber(){
+    if (isNull(accountNumber)){
+      accountNumber = accountType.getAccountCode().concat(partner.getId().toString());
+    }
+  }
 
 }

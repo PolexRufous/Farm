@@ -1,4 +1,4 @@
-package com.farm.database.kassa;
+package com.farm.database.accounts;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.farm.database.kassa;
+package com.farm.database.accounts;
 
 import lombok.Data;
 
@@ -11,10 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -36,7 +34,7 @@ class OperationDay {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "DATE")
+    @Column(name = "DATE", unique = true, nullable = false)
     @Past
     @NotNull
     private Date date;

@@ -1,4 +1,4 @@
-package com.farm.database.kassa;
+package com.farm.database.accounts;
 
 import static org.junit.Assert.assertEquals;
 
