@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -35,7 +36,10 @@ public class Operation
   private Long id;
 
   @ManyToOne(optional = false)
-  @JoinColumn(name = "OPERATION_DAY_ID", nullable = false)
+  @JoinColumns({
+          @JoinColumn(name = "OPERATION_DAY_ID", nullable = false, referencedColumnName = "ID"),
+          @JoinColumn(name = "OPERATION_DAY_DATE", nullable = false, referencedColumnName = "DATE")
+  })
   @NotNull
   private OperationDay operationDay;
 
@@ -51,24 +55,20 @@ public class Operation
 
   @Column(name = "AMOUNT", nullable = false)
   @DecimalMin(value = "0.0")
+  @NotNull
   private BigDecimal amount;
 
   @ManyToOne
   @NotNull
   @Valid
-  @JoinColumn(name = "PARTNER_ID", nullable = false)
+  @JoinColumns({
+          @JoinColumn(name = "PARTNER_ID", nullable = false, referencedColumnName = "ID")
+  })
   private Partner partner;
 
   @Column(name = "OPERATION_TYPE")
   @NotNull
   @Enumerated(EnumType.STRING)
   private OperationType operationType;
-
-  @PrePersist
-  private void setMinAmount(){
-    if (isNull(amount)){
-      amount = new BigDecimal("0.0");
-    }
-  }
 
 }

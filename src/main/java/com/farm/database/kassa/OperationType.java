@@ -19,6 +19,7 @@ public enum OperationType
   BUY_ACTIVES("Buy Actives", ""),
   CORRECT_MISTAKE("Correct mistake", "");
 
+  //private int operationCode;
   private String shortDescription;
   private String description;
 }

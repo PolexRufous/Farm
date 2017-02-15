@@ -22,6 +22,7 @@ public class Partner
 {
   @Id
   @GeneratedValue
+  @Column(name = "ID")
   private Long id;
 
   @Column(name = "PARTNER_TYPE", nullable = false)

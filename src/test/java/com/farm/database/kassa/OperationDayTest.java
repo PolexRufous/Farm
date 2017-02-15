@@ -2,11 +2,14 @@ package com.farm.database.kassa;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,6 +17,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class OperationDayTest {
 
+  @Before
+  public void setUp() throws Exception{
+    Locale.setDefault(Locale.ENGLISH);
+  }
 
   @Test
   public void testNullValidation() throws Exception{

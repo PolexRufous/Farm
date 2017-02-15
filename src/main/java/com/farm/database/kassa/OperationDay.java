@@ -33,22 +33,13 @@ import java.util.List;
 class OperationDay {
     @Id
     @GeneratedValue
+    @Column(name = "ID")
     private Long id;
 
-    @Column
-    @NotNull
-    @DecimalMin(value = "0")
-    private BigDecimal beginAmount;
-
-    @Column
-    @NotNull
-    @DecimalMin(value = "0")
-    private BigDecimal endAmount;
-
-    @Column
+    @Column(name = "DATE")
     @Past
     @NotNull
-    private Date dateOfDay;
+    private Date date;
 
     @OneToMany(mappedBy = "operationDay", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)

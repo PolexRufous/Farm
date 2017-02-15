@@ -12,8 +12,9 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum AccountType
 {
-  CASH(30, "central.cash.department"),
-  BANK_ACCOUNT(31, "main.bank.account");
+  CASH_UA(301, "account.cash.department.national"),
+  BANK_ACCOUNT_UA(311, "account.bank.account.national"),
+  SALARY(661, "account.salary");
 
   private int accountCode;
   private String description;
