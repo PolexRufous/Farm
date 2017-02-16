@@ -1,4 +1,4 @@
-package com.farm.database.accounts;
+package com.farm.database.operations;
 
 import java.math.BigDecimal;
 
@@ -16,6 +16,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
+import com.farm.database.accounts.Account;
+import com.farm.database.personality.Partner;
 import lombok.Data;
 
 /**
@@ -44,7 +46,7 @@ public class Operation
   @NotNull
   @Valid
   @ManyToOne(optional = false)
-  @JoinColumn(name = "ACCOUNT_TO", nullable = false, referencedColumnName = "ACCOUNT_NUMBER")
+  @JoinColumn(name = "ACCOUNT_FROM", nullable = false, referencedColumnName = "ACCOUNT_NUMBER")
   private Account accountFrom;
 
   @NotNull

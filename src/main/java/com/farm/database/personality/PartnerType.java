@@ -1,4 +1,4 @@
-package com.farm.database.accounts;
+package com.farm.database.personality;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

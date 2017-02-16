@@ -1,4 +1,4 @@
-package com.farm.database.accounts;
+package com.farm.database.operations;
 
 import org.springframework.data.repository.CrudRepository;
 

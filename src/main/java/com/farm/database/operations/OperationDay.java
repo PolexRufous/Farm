@@ -1,4 +1,4 @@
-package com.farm.database.accounts;
+package com.farm.database.operations;
 
 import lombok.Data;
 
@@ -21,14 +21,14 @@ import java.util.List;
  * Description: Base entity for operation day
  */
 @Entity
-@Table(name = "KASSA_OPERATION_DAY", uniqueConstraints = {
+@Table(name = "OPERATION_DAY", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
                 "id",
-                "dateOfDay"
+                "date"
         })
 })
 @Data
-class OperationDay {
+public class OperationDay {
     @Id
     @GeneratedValue
     @Column(name = "ID")

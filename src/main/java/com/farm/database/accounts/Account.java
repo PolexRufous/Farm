@@ -1,5 +1,6 @@
 package com.farm.database.accounts;
 
+import com.farm.database.personality.Partner;
 import lombok.Data;
 
 import javax.persistence.*;

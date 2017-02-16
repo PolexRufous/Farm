@@ -12,10 +12,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class GlobalDatabaseTest
 {
   @Test
-  @ExpectedDatabase(assertionMode = DatabaseAssertionMode.NON_STRICT,
-          value = "/database/tables/emptyDatabase.xml",
-          table = "KASSA_OPERATION_DAY")
-  public void testFarmDatabaseExistOperDay() throws Exception
+  @ExpectedDatabase(value = "/database/tables/emptyDatabase.xml")
+  public void testEmptyFarmDatabaseExist() throws Exception
   {
+    System.out.println("Works!");
   }
+
+
 }

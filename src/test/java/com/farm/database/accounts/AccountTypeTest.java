@@ -29,9 +29,9 @@ public class AccountTypeTest
   public void testBankAccountDescription() throws Exception
   {
     //when
-    String accDescriptionEn = messageSource.getMessage(AccountType.BANK_ACCOUNT.getDescription(),
+    String accDescriptionEn = messageSource.getMessage(AccountType.BANK_ACCOUNT_UA.getDescription(),
             null, "", Locale.ENGLISH);
-    String accDescriptionRu = messageSource.getMessage(AccountType.BANK_ACCOUNT.getDescription(),
+    String accDescriptionRu = messageSource.getMessage(AccountType.BANK_ACCOUNT_UA.getDescription(),
             null, "", new Locale("ru", "RU"));
     //then
     assertEquals("Main bank account", accDescriptionEn);

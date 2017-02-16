@@ -1,3 +1,10 @@
 <dataset>
-    <KASSA_OPERATION_DAY/>
+    <OPERATION_DAY/>
+    <OPERATION/>
+    <ACCOUNT/>
+    <ACCOUNT_BALANCE/>
+    <PARTNER/>
+    <ADDRESS/>
+    <ADDRESS_PARTNER/>
+    <PARTNER_ADDRESS/>
 </dataset>

@@ -1,10 +1,11 @@
-package com.farm.database.accounts;
+package com.farm.database.personality;
 
 import com.farm.database.address.Address;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Farm project. 2017
@@ -32,7 +33,7 @@ public class Partner
   @Column(name = "DESCRIPTION")
   private String description;
 
-  @ManyToMany
-  private Address address;
+  @ManyToMany(fetch = FetchType.LAZY)
+  private List<Address> addresses;
 
 }

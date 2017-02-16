@@ -1,12 +1,11 @@
 package com.farm.database.address;
 
+import com.farm.database.personality.Partner;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
-/**
- * Created by Lex on 15.02.2017.
- */
 @Entity
 @Table(name = "ADDRESS")
 @Data
@@ -19,5 +18,8 @@ public class Address {
 
     @Column
     private String town;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Partner> partner;
 
 }
