@@ -21,6 +21,7 @@ hs_err_pid*
 
 #other
 *.log
+.sonar
 
 # compilation
 bin

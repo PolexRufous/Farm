@@ -15,7 +15,6 @@ public class GlobalDatabaseTest
   @ExpectedDatabase(value = "/database/tables/emptyDatabase.xml")
   public void testEmptyFarmDatabaseExist() throws Exception
   {
-    System.out.println("Works!");
   }
 
 

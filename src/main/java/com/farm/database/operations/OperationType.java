@@ -12,14 +12,12 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum OperationType
 {
-  //TODO bind description with property keys for i18n
-  SALARY("Salary", ""),
-  SELL_PRODUCTION("Sell production", ""),
-  SELL_ACTIVES("Sell Actives", ""),
-  BUY_ACTIVES("Buy Actives", ""),
-  CORRECT_MISTAKE("Correct mistake", "");
+  SALARY("operation.type.salary.short", "operation.type.salary.desc"),
+  SELL_PRODUCTION("operation.type.sell.production.short", "operation.type.sell.production.desc"),
+  SELL_ACTIVES("operation.type.sell.actives.short", "operation.type.sell.actives.desc"),
+  BUY_ACTIVES("operation.type.buy.actives.short", "operation.type.buy.actives.desc"),
+  CORRECT_MISTAKE("operation.type.correct.mistake.short", "operation.type.correct.mistake.desc");
 
-  //private int operationCode;
   private String shortDescription;
   private String description;
 }

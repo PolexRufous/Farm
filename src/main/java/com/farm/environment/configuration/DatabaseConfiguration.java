@@ -5,7 +5,6 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -84,7 +83,6 @@ public class DatabaseConfiguration {
         properties.setProperty("hibernate.dialect", getProperty("hibernate.dialect"));
         properties.setProperty("hibernate.show_sql", getProperty("hibernate.show_sql"));
         properties.setProperty("hibernate.generate_statistics", getProperty("hibernate.generate_statistics"));
-        //properties.setProperty("hibernate.hbm2ddl.import_files", getProperty("hibernate.hbm2ddl.import_files"));
         properties.setProperty("hibernate.connection.pool_size", getProperty("hibernate.connection.pool_size"));
 
         return properties;

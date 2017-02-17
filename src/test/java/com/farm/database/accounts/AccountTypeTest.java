@@ -1,6 +1,7 @@
 package com.farm.database.accounts;
 
 import com.farm.environment.configuration.FarmPropertySource;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.MessageSource;
@@ -24,6 +25,11 @@ public class AccountTypeTest
 {
   @Resource
   private MessageSource messageSource;
+
+  @Before
+  public void setUp() throws Exception{
+    Locale.setDefault(Locale.ENGLISH);
+  }
 
   @Test
   public void testBankAccountDescription() throws Exception
