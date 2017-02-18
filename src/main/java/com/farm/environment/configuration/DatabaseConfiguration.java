@@ -87,7 +87,4 @@ public class DatabaseConfiguration {
 
         return properties;
     }
-
-
-
 }

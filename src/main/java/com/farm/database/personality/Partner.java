@@ -1,5 +1,6 @@
 package com.farm.database.personality;
 
+import com.farm.database.FarmEntity;
 import com.farm.database.address.Address;
 import lombok.Data;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "PARTNER")
 @Data
-public class Partner
+public class Partner implements FarmEntity
 {
   @Id
   @GeneratedValue

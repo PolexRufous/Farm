@@ -1,5 +1,6 @@
 package com.farm.database.operations;
 
+import com.farm.database.FarmEntity;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -28,7 +29,8 @@ import java.util.List;
         })
 })
 @Data
-public class OperationDay {
+public class OperationDay implements FarmEntity
+{
     @Id
     @GeneratedValue
     @Column(name = "ID")

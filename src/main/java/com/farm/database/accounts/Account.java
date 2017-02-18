@@ -1,5 +1,6 @@
 package com.farm.database.accounts;
 
+import com.farm.database.FarmEntity;
 import com.farm.database.personality.Partner;
 import lombok.Data;
 
@@ -16,7 +17,7 @@ import static java.util.Objects.isNull;
 @Entity
 @Table(name = "ACCOUNT")
 @Data
-public class Account
+public class Account implements FarmEntity
 {
   @Id
   @GeneratedValue

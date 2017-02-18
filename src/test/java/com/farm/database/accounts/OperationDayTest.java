@@ -12,6 +12,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 
 import com.farm.database.operations.OperationDay;
+import com.farm.utilits.FarmEntityValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +32,7 @@ public class OperationDayTest {
     OperationDay operationDay = new OperationDay();
     String mayNotBeNull = "may not be null";
     //when
-    Map<String, String> errors = validateOperDay(operationDay);
+    Map<String, String> errors = FarmEntityValidator.getValidationErrors(operationDay);
     //then
     assertEquals(1, errors.size());
     assertEquals(mayNotBeNull, errors.get("date"));
@@ -45,7 +46,7 @@ public class OperationDayTest {
     operationDay.setDate(Date.valueOf(futureDate));
     String mayBeInPast = "must be in the past";
     //when
-    Map<String, String> errors = validateOperDay(operationDay);
+    Map<String, String> errors = FarmEntityValidator.getValidationErrors(operationDay);
     //then
     assertEquals(1, errors.size());
     assertEquals(mayBeInPast, errors.get("date"));
@@ -58,7 +59,7 @@ public class OperationDayTest {
     OperationDay operationDay = new OperationDay();
     operationDay.setDate(Date.valueOf(currentDate));
     //when
-    Map<String, String> errors = validateOperDay(operationDay);
+    Map<String, String> errors = FarmEntityValidator.getValidationErrors(operationDay);
     //then
     assertEquals(0, errors.size());
   }
@@ -66,18 +67,5 @@ public class OperationDayTest {
   @Test
   public void testInsertion() throws Exception{
 
-  }
-
-  private Map<String, String> validateOperDay(OperationDay operationDay) {
-    Set<ConstraintViolation<OperationDay>> constrains =
-            Validation
-                    .buildDefaultValidatorFactory()
-                    .getValidator()
-                    .validate(operationDay);
-
-    return constrains.stream()
-            .collect(Collectors.toMap(
-                    constrain -> constrain.getPropertyPath().toString(),
-                    ConstraintViolation::getMessage));
   }
 }

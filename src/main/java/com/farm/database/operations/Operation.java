@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
+import com.farm.database.FarmEntity;
 import com.farm.database.accounts.Account;
 import com.farm.database.personality.Partner;
 import lombok.Data;
@@ -27,7 +28,7 @@ import lombok.Data;
 @Entity
 @Table(name = "OPERATION")
 @Data
-public class Operation
+public class Operation implements FarmEntity
 {
   @Id
   @GeneratedValue
