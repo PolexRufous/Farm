@@ -31,3 +31,7 @@ target
 .gradle
 build
 
+#production hikari properties
+#To use project rename template-hikari.properties to hikari.properties
+#and set up correct configuration
+src/main/resources/database/hikari.properties

@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -29,7 +31,7 @@ import java.util.List;
         })
 })
 @Data
-public class OperationDay implements FarmEntity
+public class OperationDay implements FarmEntity, Serializable
 {
     @Id
     @GeneratedValue
@@ -41,7 +43,7 @@ public class OperationDay implements FarmEntity
     @NotNull
     private Date date;
 
-    @OneToMany(mappedBy = "operationDay", cascade = CascadeType.ALL,
+    @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Operation> operations;
 }

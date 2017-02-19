@@ -22,15 +22,6 @@ apply plugin: 'org.sonarqube'
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
-/*buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
-    }
-}*/
-
 repositories {
     mavenCentral()
     maven {
@@ -61,9 +52,11 @@ dependencies {
     compile group: 'postgresql', name: 'postgresql', version: '9.2-1002.jdbc4'
     compile group: 'org.springframework', name: 'spring-orm', version: '4.3.5.RELEASE'
 
-
     //JavaEE
     compile group: 'org.glassfish.web', name: 'el-impl', version: '2.2'
+
+    //third path libraries
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
 
     //TESTING
     //Spring

@@ -12,6 +12,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum PartnerType
 {
+  FARM("partner.farm"),
   WORKER("partner.worker"),
   SELLER("partner.seller"),
   BUYER("partner.buyer");

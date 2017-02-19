@@ -19,18 +19,18 @@ public class OperationDayProcess {
     @Resource
     private OperationDayRepository operationDayRepository;
 
-    public OperationDay findOrCreateTodayOperationDay(){
+    public OperationDay findOrCreateToday(){
         Date today = Date.valueOf(LocalDate.now());
-        return createNewOperationDayIfNull(
+        return createNewIfNull(
                 operationDayRepository.findByDate(today), today);
     }
 
-    public OperationDay findOrCreateOperationDayByDate(Date date){
-        return createNewOperationDayIfNull(
+    public OperationDay findOrCreateByDate(Date date){
+        return createNewIfNull(
                 operationDayRepository.findByDate(date), date);
     }
 
-    private OperationDay createNewOperationDayIfNull(OperationDay operationDay, Date date){
+    private OperationDay createNewIfNull(OperationDay operationDay, Date date){
         if (isNull(operationDay)){
             operationDay = new OperationDay();
             operationDay.setDate(date);
@@ -38,5 +38,14 @@ public class OperationDayProcess {
         }
         return operationDay;
     }
+
+    public OperationDay save(OperationDay operationDay){
+        return operationDayRepository.save(operationDay);
+    }
+
+    public OperationDay findById(Long id){
+        return operationDayRepository.findOne(id);
+    }
+
 
 }

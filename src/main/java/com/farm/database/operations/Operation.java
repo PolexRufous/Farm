@@ -1,6 +1,7 @@
 package com.farm.database.operations;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import com.farm.database.FarmEntity;
 import com.farm.database.accounts.Account;
@@ -35,14 +37,19 @@ public class Operation implements FarmEntity
   @Column(name = "ID")
   private Long id;
 
-  @ManyToOne(optional = false)
+  /*@ManyToOne(optional = false)
   @JoinColumns({
           @JoinColumn(name = "OPERATION_DAY_ID", nullable = false, referencedColumnName = "ID"),
           @JoinColumn(name = "OPERATION_DAY_DATE", nullable = false, referencedColumnName = "DATE")
   })
   @NotNull
   @Valid
-  private OperationDay operationDay;
+  private OperationDay operationDay;*/
+
+  @Column(name = "DATE", nullable = false)
+  @NotNull
+  @Past
+  private Date date;
 
   @NotNull
   @Valid
