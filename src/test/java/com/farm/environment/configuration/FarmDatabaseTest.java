@@ -18,7 +18,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @ContextConfiguration(classes = {
         FarmPropertySource.class,
-        DatabaseConfiguration.class
+        DatabaseConfiguration.class,
+        BeansConfiguration.class
 },
         loader = AnnotationConfigContextLoader.class)
 @TestExecutionListeners({

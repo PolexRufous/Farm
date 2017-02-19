@@ -6,20 +6,26 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
+import javax.annotation.Resource;
 
 import com.farm.database.operations.OperationDay;
+import com.farm.environment.configuration.FarmDatabaseTest;
+import com.farm.processes.OperationDayProcess;
 import com.farm.utilits.FarmEntityValidator;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@FarmDatabaseTest
+@DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
 public class OperationDayTest {
+
+  @Resource
+  private OperationDayProcess operationDayProcess;
 
   @Before
   public void setUp() throws Exception{
@@ -65,7 +71,13 @@ public class OperationDayTest {
   }
 
   @Test
-  public void testInsertion() throws Exception{
-
+  public void testGetDayNotExist() throws Exception{
+    //given
+    Date date = Date.valueOf("2017-02-19");
+    //when
+    OperationDay operationDay = operationDayProcess.findOrCreateOperationDayByDate(date);
+    //then
+    assertEquals(date, operationDay.getDate());
+    assertEquals(1L, operationDay.getId().longValue());
   }
 }
