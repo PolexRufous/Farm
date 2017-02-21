@@ -5,12 +5,13 @@ import com.farm.database.personality.Partner;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "ADDRESS")
 @Data
-public class Address implements FarmEntity
+public class Address implements FarmEntity, Serializable
 {
 
     @Id

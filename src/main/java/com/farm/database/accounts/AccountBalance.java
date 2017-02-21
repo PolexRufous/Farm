@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import static java.util.Objects.isNull;
@@ -25,7 +26,7 @@ import static java.util.Objects.isNull;
 @Entity
 @Table(name = "ACCOUNT_BALANCE")
 @Data
-public class AccountBalance implements FarmEntity
+public class AccountBalance implements FarmEntity, Serializable
 {
   @Id
   @GeneratedValue

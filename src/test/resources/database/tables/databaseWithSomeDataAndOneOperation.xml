@@ -6,10 +6,11 @@
     <ACCOUNT id="8" account_number="3011" account_type="CASH_UA" partner_id="1"/>
     <ACCOUNT id="1" account_number="361111" account_type="RECEIVABLES_FROM_CUSTOMERS" partner_id="111"/>
     <ACCOUNT id="2" account_number="661222" account_type="SALARY" partner_id="222"/>
-    <OPERATION id="1" operationDay="2017-02-20" accountFrom="361111" accountTo="3011" amount="10000.27"
-               partner="111" operationType="SELL_PRODUCTION" />
+    <OPERATION id="2" operation_day_date="2017-02-20" account_from="361111" account_to="3011" amount="10000.27"
+               partner_id="111" operation_type="SELL_PRODUCTION" />
     <ACCOUNT_BALANCE/>
     <ADDRESS/>
     <ADDRESS_PARTNER/>
     <PARTNER_ADDRESS/>
+    <OPERATION_DAY_OPERATION operationday_id="1" operations_id="2"/>
 </dataset>

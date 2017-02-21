@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import java.io.Serializable;
+
 import static java.util.Objects.isNull;
 
 /**
@@ -17,7 +19,7 @@ import static java.util.Objects.isNull;
 @Entity
 @Table(name = "ACCOUNT")
 @Data
-public class Account implements FarmEntity
+public class Account implements FarmEntity, Serializable
 {
   @Id
   @GeneratedValue

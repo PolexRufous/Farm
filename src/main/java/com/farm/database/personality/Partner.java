@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "PARTNER")
 @Data
-public class Partner implements FarmEntity
+public class Partner implements FarmEntity, Serializable
 {
   @Id
   @GeneratedValue

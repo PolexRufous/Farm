@@ -1,5 +1,6 @@
 package com.farm.database.operations;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 
@@ -30,18 +31,17 @@ import lombok.Data;
 @Entity
 @Table(name = "OPERATION")
 @Data
-public class Operation implements FarmEntity
+public class Operation implements FarmEntity, Serializable
 {
   @Id
   @GeneratedValue
   @Column(name = "ID")
   private Long id;
 
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "OPERATION_DAY_DATE", nullable = false, referencedColumnName = "DATE")
   @NotNull
-  @Valid
-  private OperationDay operationDay;
+  @Past
+  @Column(name = "DATE")
+  private Date date;
 
   @NotNull
   @Valid
