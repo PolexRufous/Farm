@@ -37,19 +37,11 @@ public class Operation implements FarmEntity
   @Column(name = "ID")
   private Long id;
 
-  /*@ManyToOne(optional = false)
-  @JoinColumns({
-          @JoinColumn(name = "OPERATION_DAY_ID", nullable = false, referencedColumnName = "ID"),
-          @JoinColumn(name = "OPERATION_DAY_DATE", nullable = false, referencedColumnName = "DATE")
-  })
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "OPERATION_DAY_DATE", nullable = false, referencedColumnName = "DATE")
   @NotNull
   @Valid
-  private OperationDay operationDay;*/
-
-  @Column(name = "DATE", nullable = false)
-  @NotNull
-  @Past
-  private Date date;
+  private OperationDay operationDay;
 
   @NotNull
   @Valid

@@ -43,6 +43,7 @@ public class OperationDay implements FarmEntity, Serializable
     @NotNull
     private Date date;
 
+    @Valid
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Operation> operations;

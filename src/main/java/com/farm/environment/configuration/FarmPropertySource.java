@@ -4,11 +4,15 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @Configuration
-@PropertySource("classpath:database/hibernate.properties")
+@PropertySources({
+        @PropertySource("classpath:database/hibernate.properties"),
+        @PropertySource("classpath:config/application.properties")
+})
 public class FarmPropertySource {
 
     @Bean

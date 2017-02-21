@@ -20,13 +20,12 @@ import com.farm.processes.OperationDayProcess;
 import com.farm.utilits.FarmEntityValidator;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @FarmDatabaseTest
@@ -93,9 +92,10 @@ public class OperationDayTest {
 
   @Test
   @DatabaseSetup(value = "/database/tables/databaseWithSomeData.xml")
+  @ExpectedDatabase(value = "", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
   public void testCreateDayWithOperations() throws Exception{
     //given
-    Date date = Date.valueOf(LocalDate.now());
+    Date date = Date.valueOf("2017-02-20");
     OperationDay operationDay = new OperationDay();
     operationDay.setDate(date);
     Operation operation = new Operation();
@@ -124,14 +124,12 @@ public class OperationDayTest {
 
     operation.setAccountTo(accountTo);
     operation.setPartner(buyer);
-    operation.setDate(date);
     operation.setOperationType(OperationType.SELL_PRODUCTION);
     operation.setAmount(BigDecimal.valueOf(10000.27d));
+    operation.setOperationDay(operationDay);
 
     operationDay.setOperations(Collections.singletonList(operation));
     //when
-    operationDay = operationDayProcess.save(operationDay);
-    //then
-    assertEquals(1l, operationDay.getId().longValue());
+    operationDayProcess.save(operationDay);
   }
 }
