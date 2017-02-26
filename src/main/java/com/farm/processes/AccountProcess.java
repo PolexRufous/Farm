@@ -19,7 +19,8 @@ public class AccountProcess
   @Resource
   private AccountRepository accountRepository;
 
+  // TODO: 26.02.2017 implement method
   public Account findOrCreateByAccountNumber(String accountNumber){
-
+    return null;
   }
 }

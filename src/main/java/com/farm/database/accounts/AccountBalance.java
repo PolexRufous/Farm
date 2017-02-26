@@ -34,9 +34,7 @@ public class AccountBalance implements FarmEntity, Serializable
   private Long id;
 
   @OneToOne
-  @JoinColumns({
-          @JoinColumn(name = "ACCOUNT_NUMBER", referencedColumnName = "ACCOUNT_NUMBER")
-  })
+  @JoinColumn(name = "ACCOUNT_NUMBER", referencedColumnName = "ACCOUNT_NUMBER")
   @NonNull
   @Valid
   private Account account;

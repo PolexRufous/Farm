@@ -20,11 +20,10 @@ public class OperationProcess {
     @Resource
     private AccountBalanceRepository accountBalanceRepository;
 
+    //TODO implement method
     public Operation save(@Valid Operation operation){
         Account accountFrom = operation.getAccountFrom();
         Account accountTo = operation.getAccountTo();
-
-        //AccountBalance accountFromBalance =
 
         return operationRepository.save(operation);
     }

@@ -36,9 +36,7 @@ public class Account implements FarmEntity, Serializable
   @ManyToOne
   @Valid
   @NotNull
-  @JoinColumns({
-          @JoinColumn(name = "PARTNER_ID", referencedColumnName = "ID")
-  })
+  @JoinColumn(name = "PARTNER_ID", referencedColumnName = "ID")
   private Partner partner;
 
   @PrePersist
