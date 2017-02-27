@@ -21,8 +21,4 @@ public class Address implements FarmEntity, Serializable
 
     @Column
     private String town;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Partner> partner;
-
 }

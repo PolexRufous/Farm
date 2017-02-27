@@ -13,7 +13,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
         @PropertySource("classpath:database/hibernate.properties"),
         @PropertySource("classpath:config/application.properties")
 })
-public class FarmPropertySource {
+public class FarmPropertySourceConfiguration {
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {

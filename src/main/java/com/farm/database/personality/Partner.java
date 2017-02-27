@@ -23,11 +23,6 @@ public class Partner implements FarmEntity, Serializable
   @Column(name = "ID")
   private Long id;
 
-  @Column(name = "PARTNER_TYPE", nullable = false)
-  @Enumerated(EnumType.STRING)
-  @NotNull
-  private PartnerType partnerType;
-
   @Column(name = "NAME", nullable = false)
   @NotNull
   private String name;
