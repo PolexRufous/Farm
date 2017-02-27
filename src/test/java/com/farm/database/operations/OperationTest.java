@@ -3,7 +3,6 @@ package com.farm.database.operations;
 import com.farm.database.accounts.Account;
 import com.farm.database.accounts.AccountType;
 import com.farm.database.personality.Partner;
-import com.farm.database.personality.PartnerType;
 import com.farm.environment.configuration.FarmDatabaseTest;
 import com.farm.processes.OperationProcess;
 import org.junit.Before;
@@ -44,7 +43,6 @@ public class OperationTest {
         buyer.setId(111L);
         buyer.setDescription("VaryCool");
         buyer.setName("Vasily Petrovich");
-        buyer.setPartnerType(PartnerType.BUYER);
         accountFrom.setPartner(buyer);
         operation.setAccountFrom(accountFrom);
 
@@ -54,7 +52,6 @@ public class OperationTest {
         accountTo.setId(8L);
         Partner seller = new Partner();
         seller.setId(1L);
-        seller.setPartnerType(PartnerType.FARM);
         seller.setName("Farm");
         seller.setDescription("Our Farm");
         accountTo.setPartner(seller);

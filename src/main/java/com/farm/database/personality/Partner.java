@@ -23,7 +23,7 @@ public class Partner implements FarmEntity, Serializable
   @Column(name = "ID")
   private Long id;
 
-  @Column(name = "NAME", nullable = false)
+  @Column(name = "NAME", nullable = false, unique = true)
   @NotNull
   private String name;
 

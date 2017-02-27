@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @ContextConfiguration(classes = {
-        FarmPropertySource.class,
+        FarmPropertySourceConfiguration.class,
         DatabaseConfiguration.class,
         BeansConfiguration.class
 },

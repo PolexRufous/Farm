@@ -1,6 +1,6 @@
 package com.farm.database.accounts;
 
-import com.farm.environment.configuration.FarmPropertySource;
+import com.farm.environment.configuration.FarmPropertySourceConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ import static junit.framework.TestCase.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
-        FarmPropertySource.class
+        FarmPropertySourceConfiguration.class
 })
 public class AccountTypeTest
 {
