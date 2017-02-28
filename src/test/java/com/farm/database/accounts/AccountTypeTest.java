@@ -13,10 +13,6 @@ import java.util.Locale;
 
 import static junit.framework.TestCase.assertEquals;
 
-/**
- * Farm project. 2017
- * Description:
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
         FarmPropertySourceConfiguration.class
