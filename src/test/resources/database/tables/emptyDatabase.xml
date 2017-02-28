@@ -1,9 +1,8 @@
 <dataset>
-    <OPERATION/>
     <ACCOUNT/>
     <ACCOUNT_BALANCE/>
     <PARTNER/>
     <ADDRESS/>
-    <ADDRESS_PARTNER/>
+    <OPERATION/>
     <PARTNER_ADDRESS/>
 </dataset>
