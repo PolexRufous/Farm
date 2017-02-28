@@ -1,0 +1,10 @@
+<dataset>
+    <OPERATION_DAY id="1" date="2017-02-19" />
+    <OPERATION/>
+    <ACCOUNT/>
+    <ACCOUNT_BALANCE/>
+    <PARTNER/>
+    <ADDRESS/>
+    <ADDRESS_PARTNER/>
+    <PARTNER_ADDRESS/>
+</dataset>

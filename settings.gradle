@@ -1,0 +1,8 @@
+include 'app'
+include 'db'
+project(':db').projectDir = file('test/db')
+
+rootProject.children.each {
+    it.buildFileName = "${it.name}.gradle"
+}
+
