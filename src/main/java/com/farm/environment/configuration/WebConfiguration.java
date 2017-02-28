@@ -13,7 +13,7 @@ public class WebConfiguration  extends WebMvcConfigurerAdapter {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/assets/**", "/**")
+                registry.addResourceHandler( "/**")
                         .addResourceLocations("classpath:/static/");
             }
         };
