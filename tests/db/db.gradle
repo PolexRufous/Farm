@@ -1,5 +1,0 @@
-dependencies {
-    compile project(':app')
-}
-jar.enabled = false
-bootRepackage.enabled = false
