@@ -6,7 +6,6 @@ buildscript {
 }
 
 plugins {
-    id 'io.franzbecker.gradle-lombok' version '1.8'
     id 'java'
     id 'groovy'
     id 'idea'
@@ -25,7 +24,6 @@ sonarqube {
 }
 
 allprojects {
-    apply plugin: 'io.franzbecker.gradle-lombok'
     apply plugin: 'java'
     apply plugin: 'idea'
 
