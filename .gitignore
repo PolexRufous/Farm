@@ -38,3 +38,9 @@ gradlew.bat
 #To use project rename template-hikari.properties to hikari.properties
 #and set up correct configuration
 **hikari.properties
+
+#Front-end module. Not implemented yet
+Front/node_modules
+Front/
+Front/Front.iml
+
