@@ -1,0 +1,4 @@
+
+rootProject.name = 'Farm'
+
+include 'config', 'database', 'databasetests'
