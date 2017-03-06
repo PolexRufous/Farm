@@ -43,4 +43,6 @@ gradlew.bat
 Front/node_modules
 Front/
 Front/Front.iml
+**/node_modules
+UI/**/public
 

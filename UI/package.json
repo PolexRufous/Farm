@@ -1,0 +1,15 @@
+{
+  "name": "farm-ui",
+  "version": "0.0.1",
+  "description": "UI subproject for Farm project",
+  "main": "index.html",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "dust-loader": "^1.1.0",
+    "dustjs-linkedin": "^2.7.5",
+    "jquery": "^3.1.1",
+    "webpack": "^2.2.1"
+  }
+}
