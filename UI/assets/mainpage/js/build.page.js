@@ -23,4 +23,4 @@ var buildMainPage = function () {
     });
 }
 
-buildMainPage();
+exports.pageBuilder = buildMainPage;
