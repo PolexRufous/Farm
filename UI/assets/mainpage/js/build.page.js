@@ -1,5 +1,9 @@
 'use strict';
 
+//css
+import clean_css from '../../global/css/default.clean.css'
+import layout_css from '../css/layout.css'
+
 import dust from '../../../node_modules/dustjs-linkedin/dist/dust-core.min'
 import $ from '../../../node_modules/jquery/dist/jquery.min'
 

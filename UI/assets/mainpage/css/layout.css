@@ -1,0 +1,14 @@
+header {
+    position: relative;
+    min-height: 10%;
+}
+
+main {
+    position: relative;
+    min-height: 80%;
+}
+
+footer {
+    position: relative;
+    min-height: 10%;
+}
