@@ -1,7 +1,6 @@
 'use strict';
 var webpack = require('webpack');
 var dust = require('dustjs-linkedin');
-//var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
     context: __dirname + '/js',
@@ -38,13 +37,6 @@ module.exports = {
         new webpack.ProvidePlugin({
             dust: 'dustjs-linkedin'
         }),
-/*        new BrowserSyncPlugin(
-            {
-                host: 'localhost',
-                port: 3000,
-                proxy: 'http://localhost:3100/'
-            }
-        )*/
     ],
 
     watch: true,
@@ -53,6 +45,7 @@ module.exports = {
         aggregateTimeout: 100
     },
 
-    devtool: "source-map"
+    devtool: "source-map",
+    cache: false
 
 };

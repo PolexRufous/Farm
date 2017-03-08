@@ -1,14 +1,39 @@
 header {
+    width: 100%;
+    color: #ad0b11;
     position: relative;
-    min-height: 10%;
+    height: auto;
+    min-height: 15%;
 }
 
 main {
     position: relative;
-    min-height: 80%;
+    min-height: 70%;
+    height: auto;
 }
 
 footer {
-    position: relative;
-    min-height: 10%;
+    height: auto;
+    min-height: 15%;
+}
+
+footer > hr {
+    width: 80%;
+    color: #b0b0b0;
+    margin: auto;
+}
+
+aside {
+   min-width: 20%;
+    width: auto;
+    float: left;
+    height: 100px;
+    background: gray;
+}
+
+main > section {
+    min-width: 60%;
+    float: left;
+    height: 100px;
+    background: gray;
 }
