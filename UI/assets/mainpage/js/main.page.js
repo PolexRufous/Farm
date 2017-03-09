@@ -1,7 +1,10 @@
 import $ from '../../../node_modules/jquery/dist/jquery.min'
+import Backbone from '../../../node_modules/backbone/backbone-min'
 
-var greenFooter = function () {
-    $('header').css('background-color', 'green');
+var Application = {
+    Collections : {},
+    Views : {},
+    Routes : {}
 };
 
-exports.greenFooter = greenFooter;
+exports.application = Application;

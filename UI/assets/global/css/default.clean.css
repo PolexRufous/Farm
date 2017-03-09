@@ -127,8 +127,6 @@ hr {
 body, button, input, select, textarea {
     color: #34495E;
     font-family: "Source Sans Pro", sans-serif;
-    font-size: 14px;
-    font-size: 1.4rem;
     line-height: 1.5;
     margin: 0;
     vertical-align: bottom;
@@ -256,76 +254,12 @@ hr {
     -webkit-margin-end: auto;
 }
 
-.wrapper {
-    width:1180px;
-    margin:auto;
-
-}
-
-.wrapper > header, .wrapper > main, .wrapper > footer {
-    max-width: 1305px;
-}
 /*--------------------------------------------------------------
 
 3.1 Header
 
 --------------------------------------------------------------*/
 
-.main-header {
-    osition: relative;
-    overflow: auto;
-    width: 100%;
-    height: 4em;
-    background: #c6cef5;
-    margin-bottom: 1em;
-}
-
-.main-header > nav {
-    text-align: center;
-    width: calc(100% - 150px);
-    margin: 0 auto;
-}
-
-.main-header > nav > ul {
-    text-align: center;
-    width: 100%;
-    overflow: auto;
-    table-layout: fixed;
-    display: table;
-    padding: 1vh;
-}
-
-.menu-container > li {
-    display: table-cell;
-    text-align: center;
-    width: auto;
-}
-
-#logout {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 0.5em;
-}
-
-.menu-container{
-    padding: 0.5em 0;
-}
-.menu-container > li a {
-    text-decoration: none;
-    background: #57a97c;
-    padding: 0.5em;
-    display: block;
-    position: relative;
-    border: 1px solid #c6cef5;
-    width: 100%;
-    color: white;
-    transition: all 0.5s ease;
-}
-
-.menu-container > li a:hover {
-    background: gray;
-}
 
 
 /*--------------------------------------------------------------
@@ -334,30 +268,12 @@ hr {
 
 --------------------------------------------------------------*/
 
-.main-content {
-    min-height: calc(100vh - 5em);
-    margin-bottom: -4em;
-    position: relative;
-    display: block;
-}
 
 /*--------------------------------------------------------------
 
 3.1 Footer
 
 --------------------------------------------------------------*/
-
-.main-footer {
-    background: #000;
-    color: #BABABA;
-    width: 100%;
-    height: 4em;
-    bottom: 0;
-    left: 0;
-    clear: both;
-    position: relative;
-    display: block;
-}
 
 
 /*--------------------------------------------------------------
