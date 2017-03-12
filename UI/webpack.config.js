@@ -1,16 +1,17 @@
 'use strict';
-var webpack = require('webpack');
-var dust = require('dustjs-linkedin');
+const webpack = require('webpack');
+const dust = require('dustjs-linkedin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-    context: __dirname + '/js',
+module.exports = [{
+    context: __dirname + '/src',
     entry: {
-        buildpage: './build.page',
-        mainpage: './main.page'
+        buildmainpage: './mainpage/js/build.page',
+        mainpage: './mainpage/js/main.page'
     },
     output: {
-        path: 'public',
-        filename: '[name].js',
+        path: 'dist',
+        filename: 'mainpage/[name].js',
         library: '[name]'
     },
     module: {
@@ -30,6 +31,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [ 'style-loader', 'css-loader' ]
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
             }
         ]
     },
@@ -37,6 +42,12 @@ module.exports = {
         new webpack.ProvidePlugin({
             dust: 'dustjs-linkedin'
         }),
+        new HtmlWebpackPlugin({
+            title: 'Farm Main',
+            filename: 'mainpage/mainpage.html',
+            template: 'mainpage/mainpage.ejs',
+            chunks: ['buildmainpage', 'mainpage'],
+        })
     ],
 
     watch: true,
@@ -48,4 +59,4 @@ module.exports = {
     devtool: "source-map",
     cache: false
 
-};
+}];

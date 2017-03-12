@@ -1,0 +1,10 @@
+<table>
+    <tr>
+        <th>
+            {tableHeaderName}
+        </th>
+        <th>
+            {tableHeaderDescription}
+        </th>
+    </tr>
+</table>

@@ -1,0 +1,17 @@
+{
+    "partnerModel" : {
+        "url" : "/partner"
+    },
+    
+    "partnersView" : {
+        "el" : "partners-section",
+        "tableHeaderName" : "Имя",
+        "tableHeaderDescription" : "Описание"
+    },
+    
+    "partnersCollection" : {
+        "url" : "/partners"
+    }
+    
+    
+}

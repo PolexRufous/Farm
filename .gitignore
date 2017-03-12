@@ -39,10 +39,11 @@ gradlew.bat
 #and set up correct configuration
 **hikari.properties
 
-#Front-end module. Not implemented yet
+#Front-end modules
 Front/node_modules
 Front/
 Front/Front.iml
 **/node_modules
 UI/**/public
+UI/dist
 
