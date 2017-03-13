@@ -5,10 +5,8 @@ import com.farm.database.entities.personality.Partner;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
 import java.io.Serializable;
 
 import static java.util.Objects.isNull;

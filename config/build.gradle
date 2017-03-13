@@ -9,6 +9,7 @@ jar {
 dependencies {
     //Spring
     compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.5.1.RELEASE'
+    compile 'org.springframework.data:spring-data-jpa:1.11.0.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-web:1.5.1.RELEASE', {
         exclude module: 'spring-boot-starter-tomcat'
     }
@@ -21,7 +22,6 @@ dependencies {
     compile 'org.hibernate:hibernate-validator:5.3.4.Final'
     compile 'org.hibernate:hibernate-core:5.2.6.Final'
 
-    compile 'postgresql:postgresql:9.2-1002.jdbc4'
     compile 'postgresql:postgresql:9.2-1002.jdbc4'
     compile 'mysql:mysql-connector-java:5.1.6'
     compile 'com.h2database:h2:1.4.193'

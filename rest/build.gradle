@@ -1,5 +1,0 @@
-dependencies {
-    //projects
-    compile project(':config')
-    compile project(':database')
-}

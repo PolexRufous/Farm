@@ -1,12 +1,11 @@
 package com.farm.database.processes;
 
-import javax.annotation.Resource;
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Service;
-
 import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.accounts.AccountRepository;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 /**
  * Farm project. 2017

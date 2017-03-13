@@ -27,8 +27,6 @@ idea {
 dependencies {
     compile("org.springframework.boot:spring-boot-devtools")
     compile project(':config')
-    compile project(':database')
-    compile project(':rest')
 }
 
 sonarqube {
@@ -57,7 +55,6 @@ allprojects {
 
     dependencies {
         compile 'org.projectlombok:lombok:1.16.14'
-        compile 'org.springframework:spring-context:4.3.7.RELEASE'
 
     }
 }
