@@ -12,4 +12,7 @@ public interface PartnerRepository extends CrudRepository<Partner, Long> {
     List<Partner> findByNameIgnoreCaseContaining(String partName);
 
     List<Partner> findTop5ByNameIgnoreCaseContaining(String partName);
+
+    @Override
+    List<Partner> findAll();
 }

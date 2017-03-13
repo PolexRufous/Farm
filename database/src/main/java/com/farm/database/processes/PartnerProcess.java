@@ -5,6 +5,7 @@ import com.farm.database.entities.personality.PartnerRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class PartnerProcess {
@@ -29,6 +30,10 @@ public class PartnerProcess {
         oldPartner.setName(partner.getName());
         oldPartner.setDescription(partner.getDescription());
         return oldPartner;
+    }
+
+    public List<Partner> findAll() {
+        return partnerRepository.findAll();
     }
 
 

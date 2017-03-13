@@ -5,4 +5,5 @@ include 'config'
 include 'database'
 include 'databasetests'
 include 'UI'
+include 'rest'
 
