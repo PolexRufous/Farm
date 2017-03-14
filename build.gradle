@@ -63,3 +63,11 @@ bootRepackage {
     enabled = true
     mainClass = 'com.farm.FarmApplication'
 }
+
+bootRun {
+    addResources = true
+}
+
+springBoot {
+    mainClass = 'com.farm.FarmApplication'
+}

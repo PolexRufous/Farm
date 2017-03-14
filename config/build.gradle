@@ -1,4 +1,4 @@
-apply plugin: "application"
+apply plugin: 'application'
 
 mainClassName = 'com.farm.FarmApplication'
 
@@ -31,6 +31,7 @@ dependencies {
     compile 'javax:javaee-api:7.0'
 }
 
+/*
 springBoot {
     mainClass = 'com.farm.FarmApplication'
-}
+}*/

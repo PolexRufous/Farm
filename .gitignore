@@ -37,7 +37,7 @@ gradlew.bat
 #production hikari properties
 #To use project rename template-hikari.properties to hikari.properties
 #and set up correct configuration
-**hikari.properties
+**/hikari.properties
 
 #Front-end modules
 Front/node_modules
@@ -49,3 +49,4 @@ UI/dist
 
 #assets compiled by Front module
 config/src/main/resources/static/*
+!config/src/main/resources/static/index.html
