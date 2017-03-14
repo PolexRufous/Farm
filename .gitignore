@@ -47,3 +47,5 @@ Front/Front.iml
 UI/**/public
 UI/dist
 
+#assets compiled by Front module
+config/src/main/resources/static/*
