@@ -30,3 +30,7 @@ dependencies {
     //JavaEE
     compile 'javax:javaee-api:7.0'
 }
+
+springBoot {
+    mainClass = 'com.farm.FarmApplication'
+}
