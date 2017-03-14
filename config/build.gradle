@@ -26,6 +26,7 @@ dependencies {
     compile 'mysql:mysql-connector-java:5.1.6'
     compile 'com.h2database:h2:1.4.193'
 
+    compile 'org.liquibase:liquibase-core:3.5.3'
 
     //JavaEE
     compile 'javax:javaee-api:7.0'

@@ -2,10 +2,13 @@ package com.farm.environment.configuration;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import liquibase.servicelocator.LiquibaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -37,6 +40,8 @@ public class DatabaseConfiguration {
 
     @SuppressWarnings("ConstantConditions")
     @Bean
+    @LiquibaseDataSource
+    @Primary
     public DataSource dataSource() {
         String path = getClass()
                 .getClassLoader()
