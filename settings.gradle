@@ -1,6 +1,6 @@
 
 rootProject.name = 'Farm'
 
-include 'config'
+include 'application'
 include 'databasetests'
 include 'UI'

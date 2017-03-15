@@ -48,5 +48,5 @@ UI/**/public
 UI/dist
 
 #assets compiled by Front module
-config/src/main/resources/static/*
-!config/src/main/resources/static/index.html
+application/src/main/resources/static/*
+!application/src/main/resources/static/index.html
