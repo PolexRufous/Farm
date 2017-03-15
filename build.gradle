@@ -60,7 +60,6 @@ allprojects {
 
     test {
         reports.html.enabled = false
-        finalizedBy ':testReport'
     }
 }
 
