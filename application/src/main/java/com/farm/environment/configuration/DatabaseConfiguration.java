@@ -38,11 +38,7 @@ public class DatabaseConfiguration {
     @SuppressWarnings("ConstantConditions")
     @Bean
     public DataSource dataSource() {
-        String path = getClass()
-                .getClassLoader()
-                .getResource("database/hikari.properties")
-                .getPath();
-        HikariConfig config = new HikariConfig(path);
+        HikariConfig config = new HikariConfig("/database/hikari.properties");
         return new HikariDataSource(config);
     }
 

@@ -57,12 +57,13 @@ allprojects {
         compile 'org.projectlombok:lombok:1.16.14'
 
     }
+
+    test {
+        reports.html.enabled = false
+        finalizedBy ':testReport'
+    }
 }
 
-bootRepackage {
-    enabled = true
-    mainClass = 'com.farm.FarmApplication'
-}
 
 bootRun {
     addResources = true
@@ -76,9 +77,14 @@ project(':application') {
     apply plugin: 'application'
 
     mainClassName = 'com.farm.FarmApplication'
-
     jar {
+        baseName = 'farm'
         manifest.attributes('Main-Class': mainClassName)
+        destinationDir = file("${rootDir}/build/libs")
+    }
+
+    bootRepackage {
+        mainClass = mainClassName
     }
 
     dependencies {
