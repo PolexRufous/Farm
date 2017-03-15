@@ -10,7 +10,7 @@ module.exports = [{
         mainpage: './mainpage/js/main.page'
     },
     output: {
-        path: '../config/src/main/resources/static',
+        path: '../application/src/main/resources/static',
         filename: 'mainpage/[name].js',
         library: '[name]'
     },
