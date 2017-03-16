@@ -1,6 +1,3 @@
-
-rootProject.name = 'Farm'
-
 include 'application'
 include 'databasetests'
 include 'UI'

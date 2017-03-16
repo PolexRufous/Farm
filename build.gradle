@@ -7,26 +7,13 @@ buildscript {
 }
 
 plugins {
-    id 'java'
-    id 'groovy'
-    id 'idea'
     id 'org.sonarqube' version '2.2.1'
-    id 'org.springframework.boot' version '1.5.1.RELEASE'
 }
-apply plugin: 'org.springframework.boot'
-apply plugin: 'idea'
 
-
-idea {
-    module {
-        inheritOutputDirs = false
-        outputDir = file("$buildDir/classes/main/")
+allprojects {
+    repositories {
+        jcenter()
     }
-}
-
-dependencies {
-    compile("org.springframework.boot:spring-boot-devtools")
-    compile project(':application')
 }
 
 sonarqube {
@@ -39,9 +26,11 @@ sonarqube {
     }
 }
 
-allprojects {
+configure([project(':application'), project(':databasetests')]) {
     apply plugin: 'java'
+    apply plugin: 'groovy'
     apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
 
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
@@ -53,33 +42,21 @@ allprojects {
         jcenter()
     }
 
-    dependencies {
-        compile 'org.projectlombok:lombok:1.16.14'
-
-    }
+    buildDir = file("${rootDir}/build/${name}")
 
     test {
         reports.html.enabled = false
     }
-}
 
-
-bootRun {
-    addResources = true
-}
-
-springBoot {
-    mainClass = 'com.farm.FarmApplication'
+    project(':application').bootRepackage.mustRunAfter tasks.findByName('check')
 }
 
 project(':application') {
-    apply plugin: 'application'
+    def mainClassName = 'com.farm.FarmApplication'
 
-    mainClassName = 'com.farm.FarmApplication'
     jar {
         baseName = 'farm'
         manifest.attributes('Main-Class': mainClassName)
-        destinationDir = file("${rootDir}/build/libs")
     }
 
     bootRepackage {
@@ -87,7 +64,9 @@ project(':application') {
     }
 
     dependencies {
+        compile 'org.projectlombok:lombok:1.16.14'
         //Spring
+        compile 'org.springframework.boot:spring-boot-devtools:1.3.0.RELEASE'
         compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.5.1.RELEASE'
         compile 'org.springframework.data:spring-data-jpa:1.11.0.RELEASE'
         compile 'org.springframework.boot:spring-boot-starter-web:1.5.1.RELEASE', {

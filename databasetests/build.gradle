@@ -18,5 +18,8 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-test:1.5.1.RELEASE'
     testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.1.RELEASE'
 
-    compile project(':application')
+    compile  project(':application')
 }
+
+jar.enabled = false
+bootRepackage.enabled = false
