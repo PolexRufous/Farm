@@ -40,7 +40,6 @@ public class DatabaseConfiguration {
     @SuppressWarnings("ConstantConditions")
     @Bean
     @LiquibaseDataSource
-    @Primary
     public DataSource dataSource() {
         HikariConfig config = new HikariConfig("/database/hikari.properties");
         return new HikariDataSource(config);
