@@ -10,7 +10,7 @@ module.exports = [{
         mainpage: './mainpage/js/main.page'
     },
     output: {
-        path: '../config/src/main/resources/static',
+        path: '../application/src/main/resources/static',
         filename: 'mainpage/[name].js',
         library: '[name]'
     },
@@ -49,12 +49,6 @@ module.exports = [{
             chunks: ['buildmainpage', 'mainpage'],
         })
     ],
-
-    watch: true,
-
-    watchOptions: {
-        aggregateTimeout: 100
-    },
 
     devtool: "source-map",
     cache: false
