@@ -1,0 +1,96 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+          http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="PolexRufous" id="initial">
+        <createSequence sequenceName="hibernate_sequence"/>
+        <createTable tableName="account">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_number" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_type" type="VARCHAR(255)"/>
+            <column name="partner_id" type="BIGINT"/>
+        </createTable>
+        <createTable tableName="account_balance">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance_amount" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_number" type="VARCHAR(255)"/>
+        </createTable>
+        <createTable tableName="address">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="town" type="VARCHAR(255)"/>
+        </createTable>
+        <createTable tableName="address_partner">
+            <column name="address_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="partner_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="operation">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="operation_type" type="VARCHAR(255)"/>
+            <column name="account_from" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_to" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="partner_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="partner">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="partner_address">
+            <column name="partner_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="addresses_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="id" constraintName="account_balance_pkey" tableName="account_balance"/>
+        <addPrimaryKey columnNames="id" constraintName="account_pkey" tableName="account"/>
+        <addPrimaryKey columnNames="id" constraintName="address_pkey" tableName="address"/>
+        <addPrimaryKey columnNames="id" constraintName="operation_pkey" tableName="operation"/>
+        <addPrimaryKey columnNames="id" constraintName="partner_pkey" tableName="partner"/>
+        <addUniqueConstraint columnNames="account_number" constraintName="uk_382ikfm4digdohjgsvvy68h19" tableName="account"/>
+        <addUniqueConstraint columnNames="name" constraintName="uk_at6u79m60qm94ts3826eelj3i" tableName="partner"/>
+        <addForeignKeyConstraint baseColumnNames="account_number" baseTableName="account_balance" constraintName="fk3meejwjr8d6aingxrl3v8hvja" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="account_number" referencedTableName="account"/>
+        <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="partner_address" constraintName="fk5qk6fnvsnfj0l24wi31gvel3u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
+        <addForeignKeyConstraint baseColumnNames="account_to" baseTableName="operation" constraintName="fk90xxxyf76ggqaon65k4gxjivp" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="account_number" referencedTableName="account"/>
+        <addForeignKeyConstraint baseColumnNames="account_from" baseTableName="operation" constraintName="fki9pqmq3ju09rtp1vplro5joxl" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="account_number" referencedTableName="account"/>
+        <addForeignKeyConstraint baseColumnNames="addresses_id" baseTableName="partner_address" constraintName="fkinbo598jhr428pb7x6lbjilci" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address"/>
+        <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="account" constraintName="fkmvaer7xbwxjv05r4w9po78c3u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
+        <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="operation" constraintName="fks8tfq4exf2cmvb2q1wmg8uxkw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
+    </changeSet>
+</databaseChangeLog>
