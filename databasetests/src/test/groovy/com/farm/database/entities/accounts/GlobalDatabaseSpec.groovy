@@ -4,10 +4,10 @@ import com.farm.environment.configuration.FarmDatabaseTest
 import com.github.springtestdbunit.annotation.ExpectedDatabase
 import spock.lang.Specification
 
-@FarmDatabaseTest
+//@FarmDatabaseTest
 class GlobalDatabaseSpec extends Specification {
 
-    @ExpectedDatabase(value = "/database/tables/emptyDatabase.xml")
+    //@ExpectedDatabase(value = "/database/tables/emptyDatabase.xml")
     def "good test" () {
         expect:
         1==1

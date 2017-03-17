@@ -7,10 +7,8 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
           http://www.liquibase.org/xml/ns/dbchangelog
           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="Lex (generated)" id="1489691148072-1">
+    <changeSet author="PolexRufous" id="initial">
         <createSequence sequenceName="hibernate_sequence"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-2">
         <createTable tableName="account">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -21,8 +19,6 @@
             <column name="account_type" type="VARCHAR(255)"/>
             <column name="partner_id" type="BIGINT"/>
         </createTable>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-3">
         <createTable tableName="account_balance">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -32,16 +28,12 @@
             </column>
             <column name="account_number" type="VARCHAR(255)"/>
         </createTable>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-4">
         <createTable tableName="address">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
             <column name="town" type="VARCHAR(255)"/>
         </createTable>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-5">
         <createTable tableName="address_partner">
             <column name="address_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -50,8 +42,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-6">
         <createTable tableName="operation">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -71,18 +61,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-7">
-        <createTable tableName="operation_day">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="date" type="date">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-8">
         <createTable tableName="partner">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -92,8 +70,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-9">
         <createTable tableName="partner_address">
             <column name="partner_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -102,56 +78,19 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-10">
         <addPrimaryKey columnNames="id" constraintName="account_balance_pkey" tableName="account_balance"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-11">
         <addPrimaryKey columnNames="id" constraintName="account_pkey" tableName="account"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-12">
         <addPrimaryKey columnNames="id" constraintName="address_pkey" tableName="address"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-13">
-        <addPrimaryKey columnNames="id" constraintName="operation_day_pkey" tableName="operation_day"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-14">
         <addPrimaryKey columnNames="id" constraintName="operation_pkey" tableName="operation"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-15">
         <addPrimaryKey columnNames="id" constraintName="partner_pkey" tableName="partner"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-16">
         <addUniqueConstraint columnNames="account_number" constraintName="uk_382ikfm4digdohjgsvvy68h19" tableName="account"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-17">
-        <addUniqueConstraint columnNames="date" constraintName="uk_7nw8ijv9be398ih495wvfrkyp" tableName="operation_day"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-18">
         <addUniqueConstraint columnNames="name" constraintName="uk_at6u79m60qm94ts3826eelj3i" tableName="partner"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-19">
-        <addUniqueConstraint columnNames="id, date" constraintName="ukkqcy8q32nhyeecadyfdelijbe" tableName="operation_day"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-20">
         <addForeignKeyConstraint baseColumnNames="account_number" baseTableName="account_balance" constraintName="fk3meejwjr8d6aingxrl3v8hvja" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="account_number" referencedTableName="account"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-21">
         <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="partner_address" constraintName="fk5qk6fnvsnfj0l24wi31gvel3u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-22">
         <addForeignKeyConstraint baseColumnNames="account_to" baseTableName="operation" constraintName="fk90xxxyf76ggqaon65k4gxjivp" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="account_number" referencedTableName="account"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-23">
         <addForeignKeyConstraint baseColumnNames="account_from" baseTableName="operation" constraintName="fki9pqmq3ju09rtp1vplro5joxl" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="account_number" referencedTableName="account"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-24">
         <addForeignKeyConstraint baseColumnNames="addresses_id" baseTableName="partner_address" constraintName="fkinbo598jhr428pb7x6lbjilci" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-25">
         <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="account" constraintName="fkmvaer7xbwxjv05r4w9po78c3u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
-    </changeSet>
-    <changeSet author="Lex (generated)" id="1489691148072-26">
         <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="operation" constraintName="fks8tfq4exf2cmvb2q1wmg8uxkw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
     </changeSet>
 </databaseChangeLog>
