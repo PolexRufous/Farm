@@ -83,7 +83,7 @@ project(':application') {
 
         compile 'postgresql:postgresql:9.2-1002.jdbc4'
         compile 'mysql:mysql-connector-java:5.1.6'
-        compile 'com.h2database:h2:1.4.193'
+        compile 'com.h2database:h2:1.4.194'
         compile 'org.liquibase:liquibase-core:3.5.3'
 
 
