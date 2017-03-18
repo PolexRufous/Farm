@@ -29,12 +29,22 @@ public class PartnerProcess {
         Partner oldPartner = partnerRepository.findOne(partner.getId());
         oldPartner.setName(partner.getName());
         oldPartner.setDescription(partner.getDescription());
+        partnerRepository.save(oldPartner);
         return oldPartner;
     }
 
     public List<Partner> findAll() {
         return partnerRepository.findAll();
     }
+
+    public void delete(Partner partner) {
+        partnerRepository.delete(partner);
+    }
+
+    public void delete(Long id) {
+        partnerRepository.delete(id);
+    }
+
 
 
 }
