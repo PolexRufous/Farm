@@ -9,9 +9,6 @@ const PartnerConfig = Config.partnerView;
 Backbone.$ = $;
 
 export default class PartnerRowView extends Backbone.View{
-/*    get el() {
-        return '#' + PartnerConfig.el;
-    }*/
 
     get tagName() {
         return PartnerConfig.tagName;

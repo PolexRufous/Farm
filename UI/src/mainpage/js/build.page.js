@@ -28,7 +28,9 @@ const buildMainPage = function () {
         $('footer').html(result);
     });
 
-    $('.right-side').attr('id', Config.global.side);
+    $('.right-side').attr('id', Config.global.partnersSideId);
+    $('.main-section').attr('id', Config.global.mainSectionId);
+
 };
 
 buildMainPage();

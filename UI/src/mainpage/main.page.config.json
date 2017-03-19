@@ -1,6 +1,7 @@
 {
     "global" : {
-        "side" : "partners-side"
+        "partnersSideId" : "partners-side",
+        "mainSectionId" : "operations-section"
     },
     
     "partnerModel" : {
@@ -27,6 +28,10 @@
         "label_cancel" : "Отмена",
         "label_edit" : "Изменить",
         "label_remove" : "Удалить"
+    },
+    
+    "operationsView" : {
+        "sectionName" : "Операции"
     }
     
     
