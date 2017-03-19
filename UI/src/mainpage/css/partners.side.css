@@ -1,0 +1,42 @@
+#partners-side {
+    height: auto;
+    width: 20%;
+    background-color: #b9c8d8;
+}
+
+#partners-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+#partners-table th {
+    font-weight: 800;
+}
+
+#partners-table th,
+#partners-table td {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+}
+
+#partners-table th:first-child,
+#partners-table th:nth-child(2)
+{
+    width: 30%;
+}
+
+#partners-table button,
+#partners-table input {
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#partners-table .refresh-button,
+#partners-table .add-partner-button {
+    display: block;
+    width: 100%;
+}

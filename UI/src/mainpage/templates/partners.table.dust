@@ -1,4 +1,5 @@
-<table>
+<h4>{sideName}</h4>
+<table id="partners-table">
     <tr>
         <th>
             {tableHeaderName}
@@ -6,5 +7,18 @@
         <th>
             {tableHeaderDescription}
         </th>
+        <th colspan="2">
+            Действия
+        </th>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <button class="refresh-button">Обновить</button>
+        </td>
+    </tr>
+    <tr>
+       <td colspan="4">
+           <button class="add-partner-button">Добавить партнера</button>
+       </td>
     </tr>
 </table>

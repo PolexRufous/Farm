@@ -4,33 +4,39 @@ import com.farm.database.entities.personality.Partner
 import com.farm.database.entities.personality.PartnerRepository
 import com.farm.database.processes.PartnerProcess
 import spock.lang.Specification
+import spock.lang.Subject
 
 
-class PartnersRestEndpointTest extends Specification {
+class PartnersRestEndpointSpec extends Specification {
 
+    @Subject
     PartnersRestEndpoint partnersRestEndpoint
     PartnerRepository partnerRepository
 
     def setup() {
-        partnerRepository = Mock()
+        partnerRepository = Mock(PartnerRepository)
         PartnerProcess partnerProcess = new PartnerProcess(partnerRepository)
         partnersRestEndpoint = new PartnersRestEndpoint(partnerProcess)
     }
 
     def "should save user"() {
-        given: "repository returns user with id = 1"
-            Partner partner = new Partner()
-            partner.setName("name")
-            partner.setDescription("description")
-            partnerRepository.save(partner) >> {
-                partner.setId(1)
-            }
+        given:
+        Partner partner = new Partner(
+                name: "name",
+                description: "description"
+        )
+        Partner savedPartner = new Partner(
+                id: 1L,
+                name: "name",
+                description: "description"
+
+        )
+        partnerRepository.save(_ as Partner) >> savedPartner
+
         when:
-            partnersRestEndpoint.save(partner)
+        Partner responsePartner = (Partner) partnersRestEndpoint.save(partner).getBody()
+
         then:
-            1 * partnerRepository.save(partner)
-            partner.getId() == 1
-
+        responsePartner.getId() == 1L
     }
-
 }

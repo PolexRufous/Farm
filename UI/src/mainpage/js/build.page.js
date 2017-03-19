@@ -3,6 +3,7 @@
 //css
 import '../../global/css/default.clean.css'
 import '../css/layout.css'
+import '../css/partners.side.css'
 
 import dust from 'dustjs-linkedin'
 import $ from 'jquery'
@@ -27,7 +28,7 @@ const buildMainPage = function () {
         $('footer').html(result);
     });
 
-    $('.right-side').attr('id', Config.partnersView.el);
+    $('.right-side').attr('id', Config.global.side);
 };
 
 buildMainPage();

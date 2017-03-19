@@ -1,0 +1,12 @@
+<td>
+    <input name="name" value="{name}" type="text"/>
+</td>
+<td>
+    <input name="description" value="{description}" type="text"/>
+</td>
+<td>
+    <button class="partner-save-button">{label_save}</button>
+</td>
+<td>
+    <button class="partner-cancel-button">{label_cancel}</button>
+</td>

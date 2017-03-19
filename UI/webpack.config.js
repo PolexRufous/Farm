@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const dust = require('dustjs-linkedin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const IS_DEVELOP_MODE = process.env.NODE_ENV == 'development'
+
 module.exports = [{
     context: __dirname + '/src',
     entry: {
@@ -50,7 +52,9 @@ module.exports = [{
         })
     ],
 
-    devtool: "source-map",
+    watch: IS_DEVELOP_MODE,
+
+    devtool: IS_DEVELOP_MODE ? "source-map" : null,
     cache: false
 
 }];

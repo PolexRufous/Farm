@@ -1,16 +1,32 @@
 {
+    "global" : {
+        "side" : "partners-side"
+    },
+    
     "partnerModel" : {
-        "url" : "/partner"
+        "url" : "/rest/partner"
     },
     
     "partnersView" : {
-        "el" : "partners-section",
+        "tableId" : "partners-table",
+        "el" : "partners-side",
         "tableHeaderName" : "Имя",
-        "tableHeaderDescription" : "Описание"
+        "tableHeaderDescription" : "Описание",
+        "sideName" : "Партнёры"
     },
     
     "partnersCollection" : {
-        "url" : "/partners"
+        "url" : "/rest/partner"
+    },
+    
+    "partnerView" : {
+        "el" : "partners-table",
+        "tagName" : "tr",
+        "className" : "partner-row",
+        "label_save" : "Сохранить",
+        "label_cancel" : "Отмена",
+        "label_edit" : "Изменить",
+        "label_remove" : "Удалить"
     }
     
     

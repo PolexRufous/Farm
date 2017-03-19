@@ -3,10 +3,10 @@ package com.farm.rest;
 import com.farm.database.entities.personality.Partner;
 import com.farm.database.processes.PartnerProcess;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import java.util.Optional;
@@ -15,8 +15,12 @@ import java.util.Optional;
 @RequestMapping("/rest/partner")
 public class PartnersRestEndpoint {
 
-    @Resource
     private PartnerProcess partnerProcess;
+
+    @Autowired
+    public PartnersRestEndpoint(PartnerProcess partnerProcess) {
+        this.partnerProcess = partnerProcess;
+    }
 
     @GetMapping
     @ResponseBody
@@ -39,16 +43,12 @@ public class PartnersRestEndpoint {
                 .orElseThrow(RuntimeException::new);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     @ResponseBody
     @Consumes(value = "application/json")
     @Produces(value = "application/json")
-    public ResponseEntity edit(@PathVariable("id") Long id, @RequestBody Partner partner) {
+    public ResponseEntity edit(@RequestBody Partner partner) {
         return Optional.of(partner)
-                .map(curPartner -> {
-                    curPartner.setId(id);
-                    return curPartner;
-                })
                 .map(curPartner -> partnerProcess.update(curPartner))
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);

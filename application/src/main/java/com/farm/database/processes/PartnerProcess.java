@@ -2,16 +2,20 @@ package com.farm.database.processes;
 
 import com.farm.database.entities.personality.Partner;
 import com.farm.database.entities.personality.PartnerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class PartnerProcess {
 
-    @Resource
     private PartnerRepository partnerRepository;
+
+    @Autowired
+    public PartnerProcess(PartnerRepository partnerRepository) {
+        this.partnerRepository = partnerRepository;
+    }
 
     public Partner save(Partner partner){
         return partnerRepository.save(partner);
@@ -35,10 +39,6 @@ public class PartnerProcess {
 
     public List<Partner> findAll() {
         return partnerRepository.findAll();
-    }
-
-    public void delete(Partner partner) {
-        partnerRepository.delete(partner);
     }
 
     public void delete(Long id) {
