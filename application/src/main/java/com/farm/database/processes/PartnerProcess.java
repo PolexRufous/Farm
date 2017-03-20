@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class PartnerProcess {
-
     private PartnerRepository partnerRepository;
 
     @Autowired
@@ -31,10 +30,8 @@ public class PartnerProcess {
 
     public Partner update(Partner partner){
         Partner oldPartner = partnerRepository.findOne(partner.getId());
-        oldPartner.setName(partner.getName());
-        oldPartner.setDescription(partner.getDescription());
-        partnerRepository.save(oldPartner);
-        return oldPartner;
+        oldPartner.update(partner);
+        return partnerRepository.save(oldPartner);
     }
 
     public List<Partner> findAll() {
@@ -44,7 +41,4 @@ public class PartnerProcess {
     public void delete(Long id) {
         partnerRepository.delete(id);
     }
-
-
-
 }

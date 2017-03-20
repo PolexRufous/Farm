@@ -10,10 +10,6 @@ import javax.transaction.Transactional;
 
 import static java.util.Objects.isNull;
 
-/**
- * Farm project. 2017
- * Description:
- */
 @Service
 @Transactional
 public class AccountBalanceProcess

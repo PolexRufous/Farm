@@ -9,10 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Farm project. 2017
- * Description:
- */
 @Entity
 @Table(name = "PARTNER")
 @Data
@@ -33,4 +29,8 @@ public class Partner implements FarmEntity, Serializable
   @ManyToMany(fetch = FetchType.LAZY)
   private List<Address> addresses;
 
+  public void update(Partner partner) {
+    this.setName(partner.getName());
+    this.setDescription(partner.getDescription());
+  }
 }

@@ -18,4 +18,8 @@ public class Address implements FarmEntity, Serializable {
 
     @Column
     private String town;
+
+    public void update(Address donorAddress) {
+        this.town = donorAddress.town;
+    }
 }

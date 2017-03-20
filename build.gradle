@@ -121,9 +121,5 @@ project(':application') {
 
         //development
         compile 'org.springframework.boot:spring-boot-devtools:1.5.2.RELEASE'
-
-
-
-
     }
 }

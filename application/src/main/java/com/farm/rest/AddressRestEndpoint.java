@@ -1,7 +1,7 @@
 package com.farm.rest;
 
-import com.farm.database.entities.personality.Partner;
-import com.farm.database.processes.PartnerProcess;
+import com.farm.database.entities.address.Address;
+import com.farm.database.processes.AddressProcess;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,42 +9,40 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.Produces;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/rest/partner",  produces = MediaType.APPLICATION_JSON_VALUE)
-public class PartnersRestEndpoint {
-
-    private PartnerProcess partnerProcess;
+@RequestMapping(value = "/rest/address",  produces = MediaType.APPLICATION_JSON_VALUE)
+public class AddressRestEndpoint {
+    private AddressProcess addressProcess;
 
     @Autowired
-    public PartnersRestEndpoint(PartnerProcess partnerProcess) {
-        this.partnerProcess = partnerProcess;
+    public AddressRestEndpoint(AddressProcess addressProcess) {
+        this.addressProcess = addressProcess;
     }
 
     @GetMapping
     public ResponseEntity getAll() {
-        return Optional.of(partnerProcess.findAll())
+        return Optional.of(addressProcess.getAll())
                 .filter(CollectionUtils::isNotEmpty)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.noContent().build());
+                .orElseThrow(RuntimeException::new);
     }
 
     @PostMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity save(@RequestBody Partner partner) {
-        return Optional.of(partner)
-                .map(curPartner -> partnerProcess.save(curPartner))
+    public ResponseEntity save(@RequestBody Address address) {
+        return Optional.of(address)
+                .map(curAddress -> addressProcess.save(curAddress))
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);
     }
 
     @PutMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity edit(@RequestBody Partner partner) {
-        return Optional.of(partner)
-                .map(curPartner -> partnerProcess.update(curPartner))
+    public ResponseEntity edit(@RequestBody Address address) {
+        return Optional.of(address)
+                .map(curAddress -> addressProcess.update(curAddress))
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);
     }
@@ -54,7 +52,7 @@ public class PartnersRestEndpoint {
     public ResponseEntity delete(@PathVariable("id") Long id) {
         return Optional.of(id)
                 .map(curId -> {
-                    partnerProcess.delete(curId);
+                    addressProcess.delete(curId);
                     return ResponseEntity.accepted().build();
                 })
                 .orElseThrow(RuntimeException::new);
