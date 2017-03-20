@@ -96,6 +96,8 @@ project(':application') {
 
         //JavaEE
         compile 'javax:javaee-api:7.0'
+        compile 'javax.el:javax.el-api:3.0.0'
+        compile 'com.sun.el:el-ri:1.0'
 
         //3-rd path
         compile 'org.apache.commons:commons-collections4:4.1'

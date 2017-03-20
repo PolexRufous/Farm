@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 @Service
 @Transactional
@@ -24,6 +25,11 @@ public class OperationProcess {
         Account accountFrom = operation.getAccountFrom();
         Account accountTo = operation.getAccountTo();
 
-        return operationRepository.save(operation);
+        return //operationRepository.save(operation);
+            null;
+    }
+
+    public List<Operation> findAll() {
+        return operationRepository.findAll();
     }
 }
