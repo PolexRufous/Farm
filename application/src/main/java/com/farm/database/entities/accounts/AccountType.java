@@ -4,10 +4,6 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * Farm project. 2017
- * Description: Accounts plan
- */
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum AccountType

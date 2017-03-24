@@ -4,6 +4,7 @@ import static com.farm.database.utilits.FarmEntityValidator.getValidationErrors;
 
 import com.farm.database.entities.operations.Operation;
 import com.farm.database.processes.OperationProcess;
+import com.farm.database.utilits.OperationValidator;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,12 @@ import java.util.Optional;
 public class OperationsRestEndpoint {
 
     private OperationProcess operationProcess;
+    private OperationValidator operationValidator;
 
     @Autowired
-    public OperationsRestEndpoint(OperationProcess operationProcess) {
+    public OperationsRestEndpoint(OperationProcess operationProcess, OperationValidator operationValidator) {
         this.operationProcess = operationProcess;
+        this.operationValidator = operationValidator;
     }
 
     @GetMapping
@@ -39,12 +42,15 @@ public class OperationsRestEndpoint {
     public ResponseEntity save(@RequestBody Operation operation) {
         Map<String, String> errorsMap = getValidationErrors(operation);
         if (MapUtils.isEmpty(errorsMap)) {
-            return Optional.of(operation)
-                    .map(curOperation -> operationProcess.save(curOperation))
-                    .map(ResponseEntity::ok)
-                    .orElseThrow(RuntimeException::new);
-        } else {
-            return ResponseEntity.badRequest().body(errorsMap);
+            operationValidator.validate(operation);
+            errorsMap.putAll(operationValidator.getErrors());
+            if (MapUtils.isEmpty(errorsMap)) {
+                return Optional.of(operation)
+                        .map(curOperation -> operationProcess.save(curOperation))
+                        .map(ResponseEntity::ok)
+                        .orElseThrow(RuntimeException::new);
+            }
         }
+        return ResponseEntity.badRequest().body(errorsMap);
     }
 }

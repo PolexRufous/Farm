@@ -17,12 +17,12 @@ public class AccountBalanceProcess
   @Resource
   private AccountBalanceRepository accountBalanceRepository;
 
-  // TODO: 26.02.2017 implement method 
   public AccountBalance findOrCreateByAccount(Account account){
     AccountBalance accountBalance = accountBalanceRepository.findByAccount(account);
     if (isNull(accountBalance)){
-      
+      accountBalance = new AccountBalance();
+      accountBalance.setAccount(account);
     }
-    return null;
+    return accountBalance;
   }
 }

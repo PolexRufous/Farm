@@ -11,38 +11,32 @@ import java.io.Serializable;
 
 import static java.util.Objects.isNull;
 
-/**
- * Farm project. 2017
- * Description:
- */
 @Entity
 @Table(name = "ACCOUNT")
 @Data
-public class Account implements FarmEntity, Serializable
-{
-  @Id
-  @GeneratedValue
-  @Column(name = "ID")
-  private Long id;
+public class Account implements FarmEntity, Serializable {
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    private Long id;
 
-  @Column(name = "ACCOUNT_NUMBER", unique = true, nullable = false)
-  private String accountNumber;
+    @Column(name = "ACCOUNT_NUMBER", unique = true, nullable = false)
+    private String accountNumber;
 
-  @Column(name = "ACCOUNT_TYPE")
-  @Enumerated(EnumType.STRING)
-  private AccountType accountType;
+    @Column(name = "ACCOUNT_TYPE")
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
 
-  @ManyToOne
-  @Valid
-  @NotNull
-  @JoinColumn(name = "PARTNER_ID", referencedColumnName = "ID")
-  private Partner partner;
+    @ManyToOne
+    @Valid
+    @NotNull
+    @JoinColumn(name = "PARTNER_ID", referencedColumnName = "ID")
+    private Partner partner;
 
-  @PrePersist
-  private void setAccountNumber(){
-    if (isNull(accountNumber)){
-      accountNumber = accountType.getAccountCode().concat(partner.getId().toString());
+    @PrePersist
+    private void setAccountNumber() {
+        if (isNull(accountNumber)) {
+            accountNumber = accountType.getAccountCode().concat(partner.getId().toString());
+        }
     }
-  }
-
 }

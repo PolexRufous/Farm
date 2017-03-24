@@ -32,12 +32,12 @@ public class AccountBalance implements FarmEntity, Serializable
   private Account account;
 
   @Column(name = "BALANCE_AMOUNT", nullable = false)
-  private BigDecimal balanceAmount;
+  private BigDecimal balanceAmount = BigDecimal.ZERO;
 
   @PrePersist
   private void setMinAmount(){
     if (isNull(balanceAmount)){
-      balanceAmount = new BigDecimal("0.0");
+      balanceAmount = BigDecimal.ZERO;
     }
   }
 }
