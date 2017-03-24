@@ -29,6 +29,13 @@ public class AddressRestEndpoint {
                 .orElseThrow(RuntimeException::new);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity getOne(@PathVariable("id") Long id) {
+        return Optional.of(addressProcess.getOne(id))
+                .map(ResponseEntity::ok)
+                .orElseThrow(RuntimeException::new);
+    }
+
     @PostMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity save(@RequestBody Address address) {

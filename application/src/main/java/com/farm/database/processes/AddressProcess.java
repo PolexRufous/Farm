@@ -35,4 +35,8 @@ public class AddressProcess {
     public void delete(Long curId) {
         addressRepository.delete(curId);
     }
+
+    public Address getOne(Long id) {
+        return addressRepository.findOne(id);
+    }
 }

@@ -13,7 +13,7 @@ import javax.ws.rs.Produces;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/rest/partner",  produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/rest/partner")
 public class PartnersRestEndpoint {
 
     private PartnerProcess partnerProcess;
