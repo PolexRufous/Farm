@@ -1,4 +1,4 @@
-package com.farm.database.processes;
+package com.farm.processes;
 
 import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.accounts.AccountBalance;

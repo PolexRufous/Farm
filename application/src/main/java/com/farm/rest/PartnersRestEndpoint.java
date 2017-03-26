@@ -1,7 +1,7 @@
 package com.farm.rest;
 
 import com.farm.database.entities.personality.Partner;
-import com.farm.database.processes.PartnerProcess;
+import com.farm.processes.PartnerProcess;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.Produces;
 import java.util.Optional;
 
 @RestController

@@ -27,6 +27,6 @@
     "browser-sync-webpack-plugin": "^1.1.4"
   },
   "scripts" : {
-    "postInstall" : "NODE_ENV=development webpack"
+    "postInstall" : " set NODE_ENV=development && webpack"
   }
 }

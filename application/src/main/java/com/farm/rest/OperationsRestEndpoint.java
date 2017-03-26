@@ -1,9 +1,8 @@
 package com.farm.rest;
 
-import static com.farm.database.utilits.FarmEntityValidator.getValidationErrors;
-
 import com.farm.database.entities.operations.Operation;
-import com.farm.database.processes.OperationProcess;
+import com.farm.processes.OperationProcess;
+import com.farm.database.utilits.FarmEntityValidator;
 import com.farm.database.utilits.OperationValidator;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -40,7 +39,7 @@ public class OperationsRestEndpoint {
     @PostMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity save(@RequestBody Operation operation) {
-        Map<String, String> errorsMap = getValidationErrors(operation);
+        Map<String, String> errorsMap = FarmEntityValidator.getValidationErrors(operation);
         if (MapUtils.isEmpty(errorsMap)) {
             operationValidator.validate(operation);
             errorsMap.putAll(operationValidator.getErrors());

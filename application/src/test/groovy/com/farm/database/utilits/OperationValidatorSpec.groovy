@@ -3,7 +3,7 @@ package com.farm.database.utilits
 import com.farm.database.entities.accounts.Account
 import com.farm.database.entities.accounts.AccountBalance
 import com.farm.database.entities.operations.Operation
-import com.farm.database.processes.AccountBalanceProcess
+import com.farm.processes.AccountBalanceProcess
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll

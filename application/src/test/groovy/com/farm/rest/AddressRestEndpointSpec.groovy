@@ -2,7 +2,7 @@ package com.farm.rest
 
 import com.farm.database.entities.address.Address
 import com.farm.database.entities.address.AddressRepository
-import com.farm.database.processes.AddressProcess
+import com.farm.processes.AddressProcess
 import spock.lang.Specification
 import spock.lang.Subject
 

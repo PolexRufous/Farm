@@ -1,7 +1,7 @@
 package com.farm.rest;
 
 import com.farm.database.entities.address.Address;
-import com.farm.database.processes.AddressProcess;
+import com.farm.processes.AddressProcess;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

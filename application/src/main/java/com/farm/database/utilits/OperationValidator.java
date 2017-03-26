@@ -2,14 +2,13 @@ package com.farm.database.utilits;
 
 import com.farm.database.entities.accounts.AccountBalance;
 import com.farm.database.entities.operations.Operation;
-import com.farm.database.processes.AccountBalanceProcess;
+import com.farm.processes.AccountBalanceProcess;
 import lombok.Getter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
