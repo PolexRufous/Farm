@@ -7,7 +7,6 @@
     <ACCOUNT id="8" account_number="3011" account_type="CASH_UA" partner_id="1"/>
     <ACCOUNT id="1" account_number="361111" account_type="RECEIVABLES_FROM_CUSTOMERS" partner_id="111"/>
     <ACCOUNT id="2" account_number="661222" account_type="SALARY" partner_id="222"/>
-    <ACCOUNT_BALANCE/>
     <ADDRESS/>
     <ADDRESS_PARTNER/>
     <PARTNER_ADDRESS/>

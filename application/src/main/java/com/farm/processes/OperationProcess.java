@@ -1,44 +1,41 @@
 package com.farm.processes;
 
-import com.farm.database.entities.accounts.AccountBalance;
-import com.farm.database.entities.accounts.AccountBalanceRepository;
 import com.farm.database.entities.operations.Operation;
 import com.farm.database.entities.operations.OperationRepository;
-import com.farm.database.utilits.OperationValidator;
+import com.farm.executors.operations.OperationExecutionResult;
+import com.farm.executors.operations.OperationExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 @Transactional
 public class OperationProcess {
     private OperationRepository operationRepository;
-    private AccountBalanceRepository accountBalanceRepository;
+    private ApplicationContext appContext;
+    private PartnerProcess partnerProcess;
 
     @Autowired
-    public OperationProcess(OperationRepository operationRepository,
-                            AccountBalanceRepository accountBalanceRepository,
-                            OperationValidator operationValidator) {
+    public OperationProcess(OperationRepository operationRepository, ApplicationContext appContext, PartnerProcess partnerProcess) {
         this.operationRepository = operationRepository;
-        this.accountBalanceRepository = accountBalanceRepository;
+        this.appContext = appContext;
+        this.partnerProcess = partnerProcess;
     }
 
-    public Operation save(@Valid Operation operation){
-        transferFunds(operation);
-        return operationRepository.save(operation);
+    public OperationExecutionResult save(@Valid Operation operation) {
+        OperationExecutor executor = appContext.getBean(operation.getOperationType().getExecutorClass());
+        OperationExecutionResult executionResult = executor.execute(operation);
+        if (executionResult.hasNoErrors())
+            executionResult.setResult(operationRepository.save(operation));
+        return executionResult;
     }
 
-    private void transferFunds(Operation operation) {
-        AccountBalance accountBalanceFrom = accountBalanceRepository.findByAccount(operation.getAccountFrom());
-        BigDecimal balanceAmountFrom = accountBalanceFrom.getBalanceAmount();
-        AccountBalance accountBalanceTo = accountBalanceRepository.findByAccount(operation.getAccountTo());
-        BigDecimal balanceAmountTo = accountBalanceTo.getBalanceAmount();
-        accountBalanceFrom.setBalanceAmount(balanceAmountFrom.subtract(operation.getAmount()));
-        accountBalanceTo.setBalanceAmount(balanceAmountTo.add(operation.getAmount()));
+    public void fillOperation(Operation operation) {
+        operation.setPartner(partnerProcess.findById(operation.getPartner().getId()));
     }
 
     public List<Operation> findAll() {

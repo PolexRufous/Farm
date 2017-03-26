@@ -13,7 +13,7 @@ class FarmEntityValidatorSpec extends Specification {
         def errors = FarmEntityValidator.getValidationErrors(operation)
 
         then:
-        errors.size() == 6
+        errors.size() == 4
     }
 
 }

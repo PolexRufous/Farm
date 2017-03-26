@@ -28,18 +28,6 @@ public class Operation implements FarmEntity, Serializable {
     @Column(name = "DATE")
     private Date date;
 
-    @NotNull
-    @Valid
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ACCOUNT_FROM", nullable = false, referencedColumnName = "ACCOUNT_NUMBER")
-    private Account accountFrom;
-
-    @NotNull
-    @Valid
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ACCOUNT_TO", nullable = false, referencedColumnName = "ACCOUNT_NUMBER")
-    private Account accountTo;
-
     @Column(name = "AMOUNT", nullable = false)
     @DecimalMin(value = "0.0")
     @NotNull

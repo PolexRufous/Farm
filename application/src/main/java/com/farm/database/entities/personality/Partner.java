@@ -29,7 +29,13 @@ public class Partner implements FarmEntity, Serializable
   @ManyToMany(fetch = FetchType.LAZY)
   private List<Address> addresses;
 
-  public void update(Partner partner) {
+    public static Partner getFarm() {
+      Partner farm = new Partner();
+      farm.setId(0L);
+      return farm;
+    }
+
+    public void update(Partner partner) {
     this.setName(partner.getName());
     this.setDescription(partner.getDescription());
   }

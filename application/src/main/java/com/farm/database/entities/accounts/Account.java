@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import static java.util.Objects.isNull;
 
@@ -32,6 +33,9 @@ public class Account implements FarmEntity, Serializable {
     @NotNull
     @JoinColumn(name = "PARTNER_ID", referencedColumnName = "ID")
     private Partner partner;
+
+    @Column(name = "BALANCE")
+    private BigDecimal balance = BigDecimal.ZERO;
 
     @PrePersist
     private void setAccountNumber() {

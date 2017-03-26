@@ -1,9 +1,10 @@
 package com.farm.rest;
 
 import com.farm.database.entities.operations.Operation;
+import com.farm.executors.operations.OperationExecutionResult;
 import com.farm.processes.OperationProcess;
 import com.farm.database.utilits.FarmEntityValidator;
-import com.farm.database.utilits.OperationValidator;
+import com.farm.database.utilits.OperationSufficientFundsValidator;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,10 @@ import java.util.Optional;
 public class OperationsRestEndpoint {
 
     private OperationProcess operationProcess;
-    private OperationValidator operationValidator;
 
     @Autowired
-    public OperationsRestEndpoint(OperationProcess operationProcess, OperationValidator operationValidator) {
+    public OperationsRestEndpoint(OperationProcess operationProcess) {
         this.operationProcess = operationProcess;
-        this.operationValidator = operationValidator;
     }
 
     @GetMapping
@@ -39,17 +38,20 @@ public class OperationsRestEndpoint {
     @PostMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity save(@RequestBody Operation operation) {
+        operationProcess.fillOperation(operation);
         Map<String, String> errorsMap = FarmEntityValidator.getValidationErrors(operation);
+        if (MapUtils.isNotEmpty(errorsMap))
+            return ResponseEntity.badRequest().body(errorsMap);
+
+        OperationExecutionResult executionResult = operationProcess.save(operation);
+        errorsMap.putAll(executionResult.getErrors());
         if (MapUtils.isEmpty(errorsMap)) {
-            operationValidator.validate(operation);
-            errorsMap.putAll(operationValidator.getErrors());
-            if (MapUtils.isEmpty(errorsMap)) {
-                return Optional.of(operation)
-                        .map(curOperation -> operationProcess.save(curOperation))
-                        .map(ResponseEntity::ok)
-                        .orElseThrow(RuntimeException::new);
-            }
+            return Optional.of(operation)
+                    .map(curOperation -> executionResult.getResult())
+                    .map(ResponseEntity::ok)
+                    .orElseThrow(RuntimeException::new);
         }
+
         return ResponseEntity.badRequest().body(errorsMap);
     }
 }

@@ -26,7 +26,6 @@
                partner_id="111" operation_type="SELL_PRODUCTION" />
     <OPERATION id="6" account_from="361111" account_to="3011" amount="10000.27"
                partner_id="111" operation_type="SELL_PRODUCTION" />
-    <ACCOUNT_BALANCE/>
     <ADDRESS/>
     <ADDRESS_PARTNER/>
     <PARTNER_ADDRESS/>

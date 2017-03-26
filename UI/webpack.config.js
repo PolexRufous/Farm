@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const dust = require('dustjs-linkedin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 const IS_DEVELOP_MODE = (typeof process.env.NODE_ENV == "string" && process.env.NODE_ENV == 'development');
 
@@ -12,7 +13,7 @@ module.exports = [{
         mainpage: './mainpage/js/main.page'
     },
     output: {
-        path: '../application/src/main/resources/static',
+        path: path.resolve('../application/src/main/resources/static'),
         filename: 'mainpage/[name].js',
         library: '[name]'
     },
