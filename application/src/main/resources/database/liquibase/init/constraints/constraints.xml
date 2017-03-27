@@ -1,0 +1,20 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="PolexRufous" id="initial">
+        <createSequence sequenceName="hibernate_sequence"/>
+        <addPrimaryKey columnNames="id" constraintName="account_pkey" tableName="account"/>
+        <addPrimaryKey columnNames="id" constraintName="address_pkey" tableName="address"/>
+        <addPrimaryKey columnNames="id" constraintName="operation_pkey" tableName="operation"/>
+        <addPrimaryKey columnNames="id" constraintName="partner_pkey" tableName="partner"/>
+        <addUniqueConstraint columnNames="account_number" constraintName="uk_382ikfm4digdohjgsvvy68h19" tableName="account"/>
+        <addUniqueConstraint columnNames="name" constraintName="uk_at6u79m60qm94ts3826eelj3i" tableName="partner"/>
+        <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="partner_address" constraintName="fk5qk6fnvsnfj0l24wi31gvel3u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
+        <addForeignKeyConstraint baseColumnNames="addresses_id" baseTableName="partner_address" constraintName="fkinbo598jhr428pb7x6lbjilci" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address"/>
+        <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="account" constraintName="fkmvaer7xbwxjv05r4w9po78c3u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
+        <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="operation" constraintName="fks8tfq4exf2cmvb2q1wmg8uxkw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
+    </changeSet>
+</databaseChangeLog>
