@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 @Service
-public class PaySallaryCashUaOperationExecutor implements OperationExecutor {
+public class PaySalaryCashUaOperationExecutor implements OperationExecutor {
     private static final AccountType accountTypeFrom = AccountType.MONEY_CASH_UA;
     private static final AccountType accountTypeTo = AccountType.CALCULATIONS_WORKER_SALARY;
 
@@ -20,7 +20,7 @@ public class PaySallaryCashUaOperationExecutor implements OperationExecutor {
     private OperationSufficientFundsValidator operationSufficientFundsValidator;
 
     @Autowired
-    public PaySallaryCashUaOperationExecutor(AccountProcess accountProcess, OperationSufficientFundsValidator operationSufficientFundsValidator) {
+    public PaySalaryCashUaOperationExecutor(AccountProcess accountProcess, OperationSufficientFundsValidator operationSufficientFundsValidator) {
         this.accountProcess = accountProcess;
         this.operationSufficientFundsValidator = operationSufficientFundsValidator;
     }
