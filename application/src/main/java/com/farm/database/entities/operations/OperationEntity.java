@@ -1,8 +1,7 @@
 package com.farm.database.entities.operations;
 
 import com.farm.database.entities.FarmEntity;
-import com.farm.database.entities.accounts.Account;
-import com.farm.database.entities.personality.Partner;
+import com.farm.database.entities.personality.PartnerEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,7 +16,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "OPERATION")
 @Data
-public class Operation implements FarmEntity, Serializable {
+public class OperationEntity implements FarmEntity, Serializable {
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -37,7 +36,7 @@ public class Operation implements FarmEntity, Serializable {
     @Valid
     @ManyToOne(optional = false)
     @JoinColumn(name = "PARTNER_ID", nullable = false, referencedColumnName = "ID")
-    private Partner partner;
+    private PartnerEntity partnerEntity;
 
     @Column(name = "OPERATION_TYPE")
     @NotNull

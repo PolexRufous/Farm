@@ -1,7 +1,7 @@
 package com.farm.database.entities.accounts;
 
 import com.farm.database.entities.FarmEntity;
-import com.farm.database.entities.personality.Partner;
+import com.farm.database.entities.personality.PartnerEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,7 +15,7 @@ import static java.util.Objects.isNull;
 @Entity
 @Table(name = "ACCOUNT")
 @Data
-public class Account implements FarmEntity, Serializable {
+public class AccountEntity implements FarmEntity, Serializable {
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -32,7 +32,7 @@ public class Account implements FarmEntity, Serializable {
     @Valid
     @NotNull
     @JoinColumn(name = "PARTNER_ID", referencedColumnName = "ID")
-    private Partner partner;
+    private PartnerEntity partnerEntity;
 
     @Column(name = "BALANCE")
     private BigDecimal balance = BigDecimal.ZERO;
@@ -40,7 +40,7 @@ public class Account implements FarmEntity, Serializable {
     @PrePersist
     private void setAccountNumber() {
         if (isNull(accountNumber)) {
-            accountNumber = accountType.getAccountCode().concat(partner.getId().toString());
+            accountNumber = accountType.getAccountCode().concat(partnerEntity.getId().toString());
         }
     }
 }

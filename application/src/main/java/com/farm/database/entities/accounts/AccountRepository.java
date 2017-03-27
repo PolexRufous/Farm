@@ -1,11 +1,10 @@
 package com.farm.database.entities.accounts;
 
-import com.farm.database.entities.personality.Partner;
 import org.springframework.data.repository.CrudRepository;
 
-public interface AccountRepository  extends CrudRepository<Account, Long>{
+public interface AccountRepository  extends CrudRepository<AccountEntity, Long>{
 
-  Account findByAccountNumber(String accountNumber);
+  AccountEntity findByAccountNumber(String accountNumber);
 
-  Account findByPartnerIdAndAccountType(Long partnerId, AccountType accountType);
+  AccountEntity findByPartnerIdAndAccountType(Long partnerId, AccountType accountType);
 }

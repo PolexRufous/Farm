@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ADDRESS")
 @Data
-public class Address implements FarmEntity, Serializable {
+public class AddressEntity implements FarmEntity, Serializable {
 
     @Id
     @GeneratedValue
@@ -19,7 +19,7 @@ public class Address implements FarmEntity, Serializable {
     @Column
     private String town;
 
-    public void update(Address donorAddress) {
-        this.town = donorAddress.town;
+    public void update(AddressEntity donorAddressEntity) {
+        this.town = donorAddressEntity.town;
     }
 }
