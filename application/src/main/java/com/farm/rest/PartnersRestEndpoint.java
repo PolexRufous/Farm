@@ -23,6 +23,7 @@ public class PartnersRestEndpoint {
     }
 
     @GetMapping
+    @CrossOrigin
     public ResponseEntity getAll() {
         return Optional.of(partnerProcess.findAll())
                 .filter(CollectionUtils::isNotEmpty)
