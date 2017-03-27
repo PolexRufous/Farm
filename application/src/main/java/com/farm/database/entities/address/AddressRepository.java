@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Transactional
-public interface AddressRepository extends CrudRepository<AddressEntity, Long> {
+public interface AddressRepository extends CrudRepository<Address, Long> {
     @Override
-    List<AddressEntity> findAll();
+    List<Address> findAll();
 }

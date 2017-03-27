@@ -1,7 +1,6 @@
 package com.farm.processes;
 
-import com.farm.database.entities.personality.PartnerEntity;
-import com.farm.database.entities.personality.PartnerEntity;
+import com.farm.database.entities.personality.Partner;
 import com.farm.database.entities.personality.PartnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,25 +16,25 @@ public class PartnerProcess {
         this.partnerRepository = partnerRepository;
     }
 
-    public PartnerEntity save(PartnerEntity partnerEntity){
-        return partnerRepository.save(partnerEntity);
+    public Partner save(Partner partner){
+        return partnerRepository.save(partner);
     }
 
-    public PartnerEntity findById(long id){
+    public Partner findById(long id){
         return partnerRepository.findOne(id);
     }
 
-    public PartnerEntity findByName(String name){
+    public Partner findByName(String name){
         return partnerRepository.findByName(name);
     }
 
-    public PartnerEntity update(PartnerEntity partnerEntity){
-        PartnerEntity oldPartnerEntity = partnerRepository.findOne(partnerEntity.getId());
-        oldPartnerEntity.update(partnerEntity);
-        return partnerRepository.save(oldPartnerEntity);
+    public Partner update(Partner partner){
+        Partner oldPartner = partnerRepository.findOne(partner.getId());
+        oldPartner.update(partner);
+        return partnerRepository.save(oldPartner);
     }
 
-    public List<PartnerEntity> findAll() {
+    public List<Partner> findAll() {
         return partnerRepository.findAll();
     }
 

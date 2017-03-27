@@ -1,6 +1,8 @@
 package com.farm.database.utilits;
 
-import com.farm.database.entities.accounts.AccountEntity;
+import com.farm.database.entities.accounts.Account;
+import com.farm.database.entities.operations.Operation;
+import com.farm.processes.AccountProcess;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,9 @@ import java.util.stream.Collectors;
 @Getter
 public class OperationSufficientFundsValidator {
 
-    public Map<String, String> validate(AccountEntity accountEntity, BigDecimal amount) {
+    public Map<String, String> validate(Account account, BigDecimal amount) {
         List<ValidationError> errors  = new ArrayList<>();
-        BigDecimal balance = accountEntity.getBalance();
+        BigDecimal balance = account.getBalance();
         BigDecimal rest = balance.subtract(amount);
         Boolean sufficient = rest.compareTo(BigDecimal.ZERO) >= 0;
         if (!sufficient)

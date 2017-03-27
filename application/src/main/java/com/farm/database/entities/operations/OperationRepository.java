@@ -7,8 +7,8 @@ import java.sql.Date;
 import java.util.List;
 
 @Transactional
-public interface OperationRepository extends CrudRepository<OperationEntity, Long> {
-    List<OperationEntity> findByDate(Date date);
+public interface OperationRepository extends CrudRepository<Operation, Long> {
+    List<Operation> findByDate(Date date);
     @Override
-    List<OperationEntity> findAll();
+    List<Operation> findAll();
 }

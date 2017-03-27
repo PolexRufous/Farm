@@ -1,6 +1,6 @@
 package com.farm.rest;
 
-import com.farm.database.entities.address.AddressEntity;
+import com.farm.database.entities.address.Address;
 import com.farm.processes.AddressProcess;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +38,8 @@ public class AddressRestEndpoint {
 
     @PostMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity save(@RequestBody AddressEntity addressEntity) {
-        return Optional.of(addressEntity)
+    public ResponseEntity save(@RequestBody Address address) {
+        return Optional.of(address)
                 .map(curAddress -> addressProcess.save(curAddress))
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);
@@ -47,8 +47,8 @@ public class AddressRestEndpoint {
 
     @PutMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity edit(@RequestBody AddressEntity addressEntity) {
-        return Optional.of(addressEntity)
+    public ResponseEntity edit(@RequestBody Address address) {
+        return Optional.of(address)
                 .map(curAddress -> addressProcess.update(curAddress))
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);

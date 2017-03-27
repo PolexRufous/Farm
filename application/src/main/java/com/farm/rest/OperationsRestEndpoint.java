@@ -1,9 +1,10 @@
 package com.farm.rest;
 
-import com.farm.database.entities.operations.OperationEntity;
-import com.farm.executors.operations.OperationResult;
+import com.farm.database.entities.operations.Operation;
+import com.farm.executors.operations.OperationExecutionResult;
 import com.farm.processes.OperationProcess;
 import com.farm.database.utilits.FarmEntityValidator;
+import com.farm.database.utilits.OperationSufficientFundsValidator;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +37,16 @@ public class OperationsRestEndpoint {
 
     @PostMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity save(@RequestBody OperationEntity operationEntity) {
-        operationProcess.fillOperation(operationEntity);
-        Map<String, String> errorsMap = FarmEntityValidator.getValidationErrors(operationEntity);
+    public ResponseEntity save(@RequestBody Operation operation) {
+        operationProcess.fillOperation(operation);
+        Map<String, String> errorsMap = FarmEntityValidator.getValidationErrors(operation);
         if (MapUtils.isNotEmpty(errorsMap))
             return ResponseEntity.badRequest().body(errorsMap);
 
-        OperationResult executionResult = operationProcess.save(operationEntity);
+        OperationExecutionResult executionResult = operationProcess.save(operation);
         errorsMap.putAll(executionResult.getErrors());
         if (MapUtils.isEmpty(errorsMap)) {
-            return Optional.of(operationEntity)
+            return Optional.of(operation)
                     .map(curOperation -> executionResult.getResult())
                     .map(ResponseEntity::ok)
                     .orElseThrow(RuntimeException::new);

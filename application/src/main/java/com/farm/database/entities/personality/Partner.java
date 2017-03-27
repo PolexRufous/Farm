@@ -1,7 +1,7 @@
 package com.farm.database.entities.personality;
 
 import com.farm.database.entities.FarmEntity;
-import com.farm.database.entities.address.AddressEntity;
+import com.farm.database.entities.address.Address;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "PARTNER")
 @Data
-public class PartnerEntity implements FarmEntity, Serializable
+public class Partner implements FarmEntity, Serializable
 {
   @Id
   @GeneratedValue
@@ -27,16 +27,16 @@ public class PartnerEntity implements FarmEntity, Serializable
   private String description;
 
   @ManyToMany(fetch = FetchType.LAZY)
-  private List<AddressEntity> addressEntities;
+  private List<Address> addresses;
 
-    public static PartnerEntity getFarm() {
-      PartnerEntity farm = new PartnerEntity();
+    public static Partner getFarm() {
+      Partner farm = new Partner();
       farm.setId(0L);
       return farm;
     }
 
-    public void update(PartnerEntity partnerEntity) {
-    this.setName(partnerEntity.getName());
-    this.setDescription(partnerEntity.getDescription());
+    public void update(Partner partner) {
+    this.setName(partner.getName());
+    this.setDescription(partner.getDescription());
   }
 }

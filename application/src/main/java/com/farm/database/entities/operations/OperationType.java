@@ -1,7 +1,7 @@
 package com.farm.database.entities.operations;
 
-import com.farm.executors.operations.Operation;
-import com.farm.executors.operations.PaySallaryCashUaOperation;
+import com.farm.executors.operations.OperationExecutor;
+import com.farm.executors.operations.PaySallaryCashUaOperationExecutor;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum OperationType
 {
-  PAY_SALARY_CASH_UA("operation.type.salary.short", "operation.type.salary.desc", PaySallaryCashUaOperation.class),
+  PAY_SALARY_CASH_UA("operation.type.salary.short", "operation.type.salary.desc", PaySallaryCashUaOperationExecutor.class),
 
   BUY_PROD_FUEL_CASH_UA("", "", null),
   BUY_RAW_MATERIALS_CASH_UA("", "", null),
@@ -36,5 +36,5 @@ public enum OperationType
 
   private String shortDescription;
   private String description;
-  private Class<? extends Operation> executorClass;
+  private Class<? extends OperationExecutor> executorClass;
 }

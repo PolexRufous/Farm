@@ -1,6 +1,6 @@
 package com.farm.database.utilits
 
-import com.farm.database.entities.accounts.AccountEntity
+import com.farm.database.entities.accounts.Account
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
@@ -12,7 +12,7 @@ class OperationSufficientFundsValidatorSpec extends Specification {
     @Unroll
     def "should validate operation when amountOnFromAccount=#amountOnFromAccount | operationAmount=#operationAmount"() {
         given:
-        def accountFrom = Stub(AccountEntity)
+        def accountFrom = Stub(Account)
         accountFrom.getBalance() >> BigDecimal.valueOf(amountOnFromAccount)
 
         when:

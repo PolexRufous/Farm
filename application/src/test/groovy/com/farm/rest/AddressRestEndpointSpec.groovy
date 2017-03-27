@@ -1,6 +1,6 @@
 package com.farm.rest
 
-import com.farm.database.entities.address.AddressEntity
+import com.farm.database.entities.address.Address
 import com.farm.database.entities.address.AddressRepository
 import com.farm.processes.AddressProcess
 import spock.lang.Specification
@@ -19,8 +19,8 @@ class AddressRestEndpointSpec extends Specification {
 
     def 'should save address'() {
         given:
-        def address = new AddressEntity(town:'Town')
-        def savedAddress = new AddressEntity(id:1L, town:'Town')
+        def address = new Address(town:'Town')
+        def savedAddress = new Address(id:1L, town:'Town')
         addressRepository.save(address) >> savedAddress
 
         when:
@@ -33,7 +33,7 @@ class AddressRestEndpointSpec extends Specification {
 
     def 'should get all addresses'() {
         given:
-        def addresses = [new AddressEntity(id:1L, town:'Town1'), new AddressEntity(id:2L, town:'Town2')]
+        def addresses = [new Address(id:1L, town:'Town1'), new Address(id:2L, town:'Town2')]
         addressRepository.findAll() >> addresses
 
         when:
@@ -45,8 +45,8 @@ class AddressRestEndpointSpec extends Specification {
 
     def 'should edit address'() {
         given:
-        def incomingAddress = new AddressEntity(id:1L, town: 'Town1')
-        def storedAddress = new AddressEntity(id:1L, town: 'Town0')
+        def incomingAddress = new Address(id:1L, town: 'Town1')
+        def storedAddress = new Address(id:1L, town: 'Town0')
 
         addressRepository.findOne(1L) >> storedAddress
         addressRepository.save(storedAddress) >> storedAddress

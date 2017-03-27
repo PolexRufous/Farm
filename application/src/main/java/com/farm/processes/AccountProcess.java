@@ -1,9 +1,9 @@
 package com.farm.processes;
 
-import com.farm.database.entities.accounts.AccountEntity;
+import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.accounts.AccountRepository;
 import com.farm.database.entities.accounts.AccountType;
-import com.farm.database.entities.personality.PartnerEntity;
+import com.farm.database.entities.personality.Partner;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,22 +16,22 @@ public class AccountProcess {
     private AccountRepository accountRepository;
 
     // TODO: 26.02.2017 implement method
-    public AccountEntity findOrCreateByAccountNumber(String accountNumber) {
+    public Account findOrCreateByAccountNumber(String accountNumber) {
         return null;
     }
 
-    public AccountEntity findOrCreateByType(AccountType accountType, PartnerEntity partnerEntity) {
-        AccountEntity accountEntity = accountRepository.findByPartnerIdAndAccountType(partnerEntity.getId(), accountType);
-        if (accountEntity == null) {
-            accountEntity = new AccountEntity();
-            accountEntity.setAccountType(accountType);
-            accountEntity.setPartnerEntity(partnerEntity);
-            accountEntity = accountRepository.save(accountEntity);
+    public Account findOrCreateByType(AccountType accountType, Partner partner) {
+        Account account = accountRepository.findByPartnerIdAndAccountType(partner.getId(), accountType);
+        if (account == null) {
+            account = new Account();
+            account.setAccountType(accountType);
+            account.setPartner(partner);
+            account = accountRepository.save(account);
         }
-        return accountEntity;
+        return  account;
     }
 
-    public AccountEntity saveAccount(AccountEntity accountEntity) {
-        return accountRepository.save(accountEntity);
+    public Account saveAccount(Account account) {
+        return accountRepository.save(account);
     }
 }

@@ -1,7 +1,6 @@
 package com.farm.rest;
 
-import com.farm.database.entities.personality.PartnerEntity;
-import com.farm.database.entities.personality.PartnerEntity;
+import com.farm.database.entities.personality.Partner;
 import com.farm.processes.PartnerProcess;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +32,8 @@ public class PartnersRestEndpoint {
 
     @PostMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity save(@RequestBody PartnerEntity partnerEntity) {
-        return Optional.of(partnerEntity)
+    public ResponseEntity save(@RequestBody Partner partner) {
+        return Optional.of(partner)
                 .map(curPartner -> partnerProcess.save(curPartner))
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);
@@ -42,8 +41,8 @@ public class PartnersRestEndpoint {
 
     @PutMapping
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity edit(@RequestBody PartnerEntity partnerEntity) {
-        return Optional.of(partnerEntity)
+    public ResponseEntity edit(@RequestBody Partner partner) {
+        return Optional.of(partner)
                 .map(curPartner -> partnerProcess.update(curPartner))
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);
