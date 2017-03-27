@@ -1,8 +1,6 @@
-package com.farm.database.utilits;
+package com.farm.executors.validators;
 
 import com.farm.database.entities.accounts.Account;
-import com.farm.database.entities.operations.Operation;
-import com.farm.processes.AccountProcess;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 

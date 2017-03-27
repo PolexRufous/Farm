@@ -4,7 +4,6 @@ import com.farm.database.entities.operations.Operation;
 import com.farm.executors.operations.OperationExecutionResult;
 import com.farm.processes.OperationProcess;
 import com.farm.database.utilits.FarmEntityValidator;
-import com.farm.database.utilits.OperationSufficientFundsValidator;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;

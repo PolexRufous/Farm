@@ -4,12 +4,11 @@ import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.accounts.AccountType;
 import com.farm.database.entities.operations.Operation;
 import com.farm.database.entities.personality.Partner;
-import com.farm.database.utilits.OperationSufficientFundsValidator;
+import com.farm.executors.validators.OperationSufficientFundsValidator;
 import com.farm.processes.AccountProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 
 @Service
