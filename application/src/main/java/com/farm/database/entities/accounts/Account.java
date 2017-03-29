@@ -3,6 +3,7 @@ package com.farm.database.entities.accounts;
 import com.farm.database.entities.FarmEntity;
 import com.farm.database.entities.personality.Partner;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -17,7 +18,7 @@ import static java.util.Objects.isNull;
 @Data
 public class Account implements FarmEntity, Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
 

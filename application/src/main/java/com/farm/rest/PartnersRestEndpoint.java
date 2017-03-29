@@ -32,6 +32,7 @@ public class PartnersRestEndpoint {
     }
 
     @PostMapping
+    @CrossOrigin
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity save(@RequestBody Partner partner) {
         return Optional.of(partner)
@@ -41,6 +42,7 @@ public class PartnersRestEndpoint {
     }
 
     @PutMapping
+    @CrossOrigin
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity edit(@RequestBody Partner partner) {
         return Optional.of(partner)
@@ -50,6 +52,7 @@ public class PartnersRestEndpoint {
     }
 
     @DeleteMapping("/{id}")
+    @CrossOrigin
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity delete(@PathVariable("id") Long id) {
         return Optional.of(id)
