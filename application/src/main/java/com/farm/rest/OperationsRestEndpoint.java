@@ -27,6 +27,7 @@ public class OperationsRestEndpoint {
     }
 
     @GetMapping
+    @CrossOrigin
     public ResponseEntity getAll() {
         return Optional.of(operationProcess.findAll())
                 .filter(CollectionUtils::isNotEmpty)
@@ -35,6 +36,7 @@ public class OperationsRestEndpoint {
     }
 
     @PostMapping
+    @CrossOrigin
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity save(@RequestBody Operation operation) {
         operationProcess.fillOperation(operation);
