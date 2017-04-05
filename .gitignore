@@ -30,8 +30,6 @@ target
 # gradle files
 .gradle
 build
-gradle
-gradlew.bat
 
 #production hikari properties
 #To use project rename template-hikari.properties to hikari.properties
