@@ -31,7 +31,6 @@ target
 .gradle
 build
 gradle
-gradlew
 gradlew.bat
 
 #production hikari properties
