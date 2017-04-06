@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -41,8 +41,28 @@ public class DatabaseConfiguration {
     @Bean
     @LiquibaseDataSource
     public DataSource dataSource() {
-        HikariConfig config = new HikariConfig("/database/hikari.properties");
-        return new HikariDataSource(config);
+        String hikariPropertiesFilePath = "/database/hikari.properties";
+        ClassPathResource configFile = new ClassPathResource(hikariPropertiesFilePath);
+        if (configFile.exists()) {
+            HikariConfig config = new HikariConfig(hikariPropertiesFilePath);
+            return new HikariDataSource(config);
+        }
+
+        return getHikariDataSourceFromArguments();
+    }
+
+    private HikariDataSource getHikariDataSourceFromArguments() {
+        HikariDataSource dataSource = new HikariDataSource();
+        String userName = getProperty("dataSource.user");
+        String password = getProperty("dataSource.password");
+        String dataBaseName = getProperty("dataSource.databaseName");
+        String portNumber = getProperty("dataSource.portNumber");
+        String serverAddress = getProperty("dataSource.serverName");
+
+        dataSource.setUsername(userName);
+        dataSource.setPassword(password);
+        dataSource.setJdbcUrl("jdbc:postgresql://" + serverAddress + ":" +portNumber + "/" + dataBaseName);
+        return dataSource;
     }
 
     @Bean
