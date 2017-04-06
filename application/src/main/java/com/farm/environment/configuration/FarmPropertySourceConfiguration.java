@@ -10,7 +10,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 
 @Configuration
 @PropertySources({
-        @PropertySource("classpath:database/hibernate.properties"),
+        @PropertySource(value = "classpath:database/hibernate.properties", ignoreResourceNotFound = true),
         @PropertySource("classpath:config/application.properties")
 })
 public class FarmPropertySourceConfiguration {
