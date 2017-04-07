@@ -10,7 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum OperationType
 {
-  PAY_SALARY_CASH_UA("operation.type.salary.short", "operation.type.salary.desc", PaySalaryCashUaOperationExecutor.class),
+  PAY_SALARY_CASH_UA("", "", PaySalaryCashUaOperationExecutor.class),
 
   BUY_PROD_FUEL_CASH_UA("", "", null),
   BUY_RAW_MATERIALS_CASH_UA("", "", null),

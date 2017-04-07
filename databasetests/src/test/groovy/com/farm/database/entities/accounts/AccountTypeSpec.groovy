@@ -20,7 +20,6 @@ class AccountTypeSpec extends Specification {
         Locale.setDefault(Locale.ENGLISH);
     }
 
-    @Ignore
     @Unroll
     def "should create correct bank account description when locale=#locale"() {
         when:
@@ -31,7 +30,7 @@ class AccountTypeSpec extends Specification {
 
         where:
         input                                              | locale                 | expectedOutput
-        AccountType.MONEY_BANK_ACCOUNT_UA.getDescription() | Locale.ENGLISH         | 'Main bank account'
-        AccountType.MONEY_BANK_ACCOUNT_UA.getDescription() | new Locale("ru", "RU") | 'Основной счет в банке'
+        AccountType.MONEY_BANK_ACCOUNT_UA.getDescription() | Locale.ENGLISH         | 'Текущие счета в национальнoй валюте 311'
+        AccountType.MONEY_BANK_ACCOUNT_UA.getDescription() | new Locale("ru", "RU") | 'Текущие счета в национальнoй валюте 311'
     }
 }
