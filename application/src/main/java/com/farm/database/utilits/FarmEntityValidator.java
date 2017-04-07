@@ -10,8 +10,7 @@ import java.util.stream.Collectors;
 
 public final class FarmEntityValidator {
 
-    public static Map<String, String> getValidationErrors(FarmEntity entity)
-    {
+    public static Map<String, String> getValidationErrors(FarmEntity entity) {
         Set<ConstraintViolation<FarmEntity>> constrains =
                 Validation
                         .buildDefaultValidatorFactory()

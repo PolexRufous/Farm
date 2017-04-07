@@ -1,7 +1,6 @@
 package com.farm.database.entities.operations;
 
 import com.farm.database.entities.FarmEntity;
-import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.personality.Partner;
 import lombok.Data;
 

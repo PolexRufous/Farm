@@ -3,7 +3,6 @@ package com.farm.database.entities.accounts;
 import com.farm.database.entities.FarmEntity;
 import com.farm.database.entities.personality.Partner;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.Valid;

@@ -40,7 +40,7 @@ public class AddressRestEndpoint {
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity save(@RequestBody Address address) {
         return Optional.of(address)
-                .map(curAddress -> addressProcess.save(curAddress))
+                .map(addressProcess::save)
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);
     }
@@ -49,7 +49,7 @@ public class AddressRestEndpoint {
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity edit(@RequestBody Address address) {
         return Optional.of(address)
-                .map(curAddress -> addressProcess.update(curAddress))
+                .map(addressProcess::update)
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);
     }

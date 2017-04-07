@@ -36,7 +36,7 @@ public class PartnersRestEndpoint {
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity save(@RequestBody Partner partner) {
         return Optional.of(partner)
-                .map(curPartner -> partnerProcess.save(curPartner))
+                .map(partnerProcess::save)
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);
     }
@@ -46,7 +46,7 @@ public class PartnersRestEndpoint {
     @Consumes(MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity edit(@RequestBody Partner partner) {
         return Optional.of(partner)
-                .map(curPartner -> partnerProcess.update(curPartner))
+                .map(partnerProcess::update)
                 .map(ResponseEntity::ok)
                 .orElseThrow(RuntimeException::new);
     }

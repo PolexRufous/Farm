@@ -15,11 +15,6 @@ public class AccountProcess {
     @Resource
     private AccountRepository accountRepository;
 
-    // TODO: 26.02.2017 implement method
-    public Account findOrCreateByAccountNumber(String accountNumber) {
-        return null;
-    }
-
     public Account findOrCreateByType(AccountType accountType, Partner partner) {
         Account account = accountRepository.findByPartnerIdAndAccountType(partner.getId(), accountType);
         if (account == null) {
