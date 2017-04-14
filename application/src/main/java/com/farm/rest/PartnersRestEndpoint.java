@@ -31,6 +31,14 @@ public class PartnersRestEndpoint {
                 .orElse(ResponseEntity.noContent().build());
     }
 
+    @GetMapping("/{id}")
+    @CrossOrigin
+    public ResponseEntity get(@PathVariable Long id) {
+        return Optional.of(partnerProcess.findById(id))
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());
+    }
+
     @PostMapping
     @CrossOrigin
     @Consumes(MediaType.APPLICATION_JSON_VALUE)

@@ -8,7 +8,8 @@ import java.util.List;
 
 @Transactional
 public interface OperationRepository extends CrudRepository<Operation, Long> {
-    List<Operation> findByDate(Date date);
     @Override
     List<Operation> findAll();
+    List<Operation> findByDate(Date date);
+    List<Operation> findAllByPartnerId(Long partnerId);
 }

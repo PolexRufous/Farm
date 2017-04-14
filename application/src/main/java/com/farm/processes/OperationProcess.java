@@ -41,4 +41,8 @@ public class OperationProcess {
     public List<Operation> findAll() {
         return operationRepository.findAll();
     }
+
+    public List<Operation> findByPartnerId(Long partner_id) {
+        return operationRepository.findAllByPartnerId(partner_id);
+    }
 }
