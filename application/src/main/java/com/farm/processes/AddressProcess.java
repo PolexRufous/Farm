@@ -28,8 +28,11 @@ public class AddressProcess {
 
     public Address update(Address donorAddress) {
         Address address = addressRepository.findOne(donorAddress.getId());
-        address.update(donorAddress);
-        return addressRepository.save(address);
+        if (address != null) {
+            address.update(donorAddress);
+            return addressRepository.save(address);
+        }
+        return addressRepository.save(donorAddress);
     }
 
     public void delete(Long curId) {

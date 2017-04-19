@@ -38,5 +38,6 @@ public class Partner implements FarmEntity, Serializable
     public void update(Partner partner) {
     this.setName(partner.getName());
     this.setDescription(partner.getDescription());
+    this.setAddresses(partner.addresses);
   }
 }
