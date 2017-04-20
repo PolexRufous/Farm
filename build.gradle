@@ -21,8 +21,12 @@ sonarqube {
         property 'sonar.projectName', 'Farm'
         property 'sonar.projectKey', 'project:farm'
         property 'sonar.projectVersion', '1.0'
-        property 'sonar.sources', 'src/main'
         property 'sonar.sourceEncoding', 'UTF-8'
+        property 'sonar.tests', 'application/src/test,databasetests/src/test'
+        property 'sonar.dynamicAnalysis', 'reuseReports'
+        property 'sonar.junit.reportsPaths', 'build/application/reports,build/databasetests/reports'
+        property 'sonar.java.coveragePlugin', 'jacoco'
+        property 'sonar.jacoco.reportPaths', 'build/application/jacoco.exec,build/databasetests/jacoco.exec'
     }
 }
 
@@ -31,6 +35,7 @@ configure([project(':application'), project(':databasetests')]) {
     apply plugin: 'groovy'
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
+    apply plugin: 'jacoco'
 
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
@@ -43,10 +48,6 @@ configure([project(':application'), project(':databasetests')]) {
     }
 
     buildDir = file("${rootDir}/build/${name}")
-
-    test {
-        reports.html.enabled = false
-    }
 
     project(':application').bootRepackage.mustRunAfter tasks.findByName('check')
 }
