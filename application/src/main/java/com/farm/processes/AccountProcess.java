@@ -4,16 +4,20 @@ import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.accounts.AccountRepository;
 import com.farm.database.entities.accounts.AccountType;
 import com.farm.database.entities.personality.Partner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 @Service
 @Transactional
 public class AccountProcess {
-    @Resource
     private AccountRepository accountRepository;
+
+    @Autowired
+    public AccountProcess(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     public Account findOrCreateByType(AccountType accountType, Partner partner) {
         Account account = accountRepository.findByPartnerIdAndAccountType(partner.getId(), accountType);

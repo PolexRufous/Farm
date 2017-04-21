@@ -37,7 +37,7 @@ public class OperationsRestEndpoint {
 
     @GetMapping("/partner/{partner_id}")
     @CrossOrigin
-    public ResponseEntity get(@PathVariable Long partner_id) {
+    public ResponseEntity getByPartnerId(@PathVariable Long partner_id) {
         return Optional.of(operationProcess.findByPartnerId(partner_id))
                 .filter(CollectionUtils::isNotEmpty)
                 .map(ResponseEntity::ok)

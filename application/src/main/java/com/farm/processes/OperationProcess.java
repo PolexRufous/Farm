@@ -42,7 +42,7 @@ public class OperationProcess {
         return operationRepository.findAll();
     }
 
-    public List<Operation> findByPartnerId(Long partner_id) {
-        return operationRepository.findAllByPartnerId(partner_id);
+    public List<Operation> findByPartnerId(Long partnerId) {
+        return operationRepository.findAllByPartnerId(partnerId);
     }
 }
