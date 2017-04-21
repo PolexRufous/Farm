@@ -7,8 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {
-        "com.farm.database.processes",
-        "com.farm.rest"
+        "com.farm"
 })
 public class BeansConfiguration {
 

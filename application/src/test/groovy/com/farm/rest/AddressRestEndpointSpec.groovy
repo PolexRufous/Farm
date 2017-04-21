@@ -3,6 +3,7 @@ package com.farm.rest
 import com.farm.database.entities.address.Address
 import com.farm.database.entities.address.AddressRepository
 import com.farm.processes.AddressProcess
+import org.springframework.http.HttpStatus
 import spock.lang.Specification
 import spock.lang.Subject
 
@@ -56,5 +57,30 @@ class AddressRestEndpointSpec extends Specification {
 
         then:
         responseAddress == incomingAddress
+    }
+
+    def "should get address by id"() {
+        given:
+        def addressId = 1L
+        def address = new Address(id: addressId, town: 'Town1')
+
+        addressRepository.findOne(addressId) >> address
+
+        when:
+        def responseAddress = addressRestEndpointSpec.getOne(addressId).getBody()
+
+        then:
+        responseAddress == address
+    }
+
+    def "should delete address"() {
+        given:
+        def addressId = 1L
+
+        when:
+        def response = addressRestEndpointSpec.delete(addressId)
+
+        then:
+        response.getStatusCode() == HttpStatus.ACCEPTED
     }
 }
