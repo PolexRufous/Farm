@@ -7,4 +7,5 @@
     <include file="database/liquibase/init/init-tables.xml"/>
     <include file="database/liquibase/data/fill-data.xml"/>
     <include file="database/liquibase/changes/change-account-balance-format.xml" />
+    <include file="database/liquibase/changes/change-operation-dates.xml" />
 </databaseChangeLog>

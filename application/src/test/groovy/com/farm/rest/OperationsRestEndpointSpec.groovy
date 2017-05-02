@@ -54,13 +54,17 @@ class OperationsRestEndpointSpec extends Specification {
         def filledPartner = new Partner(id: 1L, name: 'John')
         def type = OperationType.PAY_SALARY_CASH_UA
         def operation = new Operation(
-                date: date,
+                enterDate: date,
+                expectedCommitDate: date,
+                factCommitDate: date,
                 amount: amount,
                 partner: filledPartner,
                 operationType: type)
         def savedOperation = new Operation(
                 id : id,
-                date: date,
+                enterDate: date,
+                expectedCommitDate: date,
+                factCommitDate: date,
                 amount: amount,
                 partner: filledPartner,
                 operationType: type)
@@ -73,7 +77,9 @@ class OperationsRestEndpointSpec extends Specification {
         then:
         with(result) {
             getId() == id
-            getDate() == date
+            getEnterDate() == date
+            getExpectedCommitDate() == date
+            getFactCommitDate() == date
             getAmount() == amount
             getPartner() == filledPartner
             getOperationType() == type
@@ -98,7 +104,7 @@ class OperationsRestEndpointSpec extends Specification {
         def filledPartner = new Partner(id: 1L, name: 'John')
         def type = OperationType.PAY_SALARY_CASH_UA
         def operation = new Operation(
-                date: date,
+                enterDate: date,
                 amount: amount,
                 partner: filledPartner,
                 operationType: type)

@@ -1,0 +1,24 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="PolexRufous" id="changeOperationDates">
+        <modifyDataType tableName="account" columnName="balance" newDataType="NUMERIC" />
+        <renameColumn newColumnName="enter_date" oldColumnName="date" tableName="operation"/>
+        <addColumn tableName="operation">
+            <column name="expected_commit_date" type="date"/>
+        </addColumn>
+        <addColumn tableName="operation">
+            <column name="fact_commit_date" type="date"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="PolexRufous" id="fillOperationDates">
+        <sql>UPDATE operation SET expected_commit_date = enter_date</sql>
+        <sql>UPDATE operation SET fact_commit_date = enter_date</sql>
+    </changeSet>
+    <changeSet author="PolexRufous" id="addNotNullConstrainToExpectedCommitDateOfOperation">
+        <addNotNullConstraint tableName="operation" columnName="expected_commit_date" columnDataType="enterDate"/>
+    </changeSet>
+</databaseChangeLog>

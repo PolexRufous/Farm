@@ -10,6 +10,6 @@ import java.util.List;
 public interface OperationRepository extends CrudRepository<Operation, Long> {
     @Override
     List<Operation> findAll();
-    List<Operation> findByDate(Date date);
+    List<Operation> findByEnterDate(Date date);
     List<Operation> findAllByPartnerId(Long partnerId);
 }

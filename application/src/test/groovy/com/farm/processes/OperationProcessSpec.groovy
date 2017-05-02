@@ -36,7 +36,7 @@ class OperationProcessSpec extends Specification {
         given:
         Partner partner = new Partner()
         Operation operation = new Operation(
-                date: new Date(dateInMills),
+                enterDate: new Date(dateInMills),
                 amount: BigDecimal.valueOf(amout),
                 partner: partner,
                 operationType: operationType)
@@ -55,7 +55,7 @@ class OperationProcessSpec extends Specification {
             with(result.result) {
                 getAmount() == 500L
                 getPartner() == partner
-                getDate() == new Date(dateInMills)
+                getEnterDate() == new Date(dateInMills)
                 getOperationType() == operationType
             }
         }

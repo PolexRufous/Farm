@@ -24,8 +24,15 @@ public class Operation implements FarmEntity, Serializable {
 
     @NotNull
     @Past
-    @Column(name = "DATE")
-    private Date date;
+    @Column(name = "ENTER_DATE")
+    private Date enterDate;
+
+    @NotNull
+    @Column(name = "EXPECTED_COMMIT_DATE")
+    private Date expectedCommitDate;
+
+    @Column(name = "FACT_COMMIT_DATE")
+    private Date factCommitDate;
 
     @Column(name = "AMOUNT", nullable = false)
     @DecimalMin(value = "0.0")
