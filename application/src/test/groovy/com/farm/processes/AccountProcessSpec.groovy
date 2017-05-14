@@ -16,34 +16,31 @@ class AccountProcessSpec extends Specification {
         accountProcess = new AccountProcess(accountRepository)
     }
 
-    def "should not create new account when findOrCreateByType called on existing account"() {
+    def "should create new expected account when createAccount is called"() {
         given:
         def accountId = 1L
-        Account account = new Account(id: accountId)
-        accountRepository.findByPartnerIdAndAccountType(_, _) >> account
-
-        when:
-        Account result = accountProcess.findOrCreateByType(AccountType.MONEY_BANK_ACCOUNT_UA, new Partner())
-
-        then:
-        result.getId() == accountId
-    }
-
-    def "should create new account when findOrCreateByType called on new account"() {
-        given:
-        def accountId = 1L
-        Account account = new Account(id: accountId)
-        accountRepository.findByPartnerIdAndAccountType(_, _) >> null
+        def partnerId = 1L
+        def subject = "Some thing"
+        def accountType = AccountType.MONEY_BANK_ACCOUNT_UA
+        Account account = new Account(
+                id: accountId,
+                partnerId: partnerId,
+                subject: subject,
+                accountType: accountType
+        )
         accountRepository.save(_) >> account
+        accountRepository.findByAccountNumber(_ as String) >> null
+        def partner = new Partner(id: partnerId)
+
 
         when:
-        Account result = accountProcess.findOrCreateByType(AccountType.MONEY_BANK_ACCOUNT_UA, new Partner())
+        Account result = accountProcess.createAccount(accountType, partner, subject)
 
         then:
-        result.getId() == accountId
+        result == account
     }
 
-    def "should retrun saved Account"() {
+    def "should return saved Account"() {
         given:
         def accountId = 1L
         Account account = new Account()

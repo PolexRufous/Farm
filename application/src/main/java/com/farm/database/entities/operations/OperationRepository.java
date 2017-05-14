@@ -12,4 +12,5 @@ public interface OperationRepository extends CrudRepository<Operation, Long> {
     List<Operation> findAll();
     List<Operation> findByEnterDate(Date date);
     List<Operation> findAllByPartnerId(Long partnerId);
+    List<Operation> findAllByDocumentId(Long documentId);
 }

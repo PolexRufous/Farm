@@ -8,4 +8,8 @@
     <include file="database/liquibase/data/fill-data.xml"/>
     <include file="database/liquibase/changes/change-account-balance-format.xml" />
     <include file="database/liquibase/changes/change-operation-dates.xml" />
+    <include file="database/liquibase/changes/create-document-table.xml" />
+    <include file="database/liquibase/changes/update-operation-table.xml" />
+    <include file="database/liquibase/changes/update-account-table.xml" />
+    <include file="database/liquibase/changes/update-document-table.xml" />
 </databaseChangeLog>

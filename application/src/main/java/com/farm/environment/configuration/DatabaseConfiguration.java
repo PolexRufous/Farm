@@ -2,6 +2,7 @@ package com.farm.environment.configuration;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
@@ -28,14 +29,10 @@ import java.util.Properties;
         "com.farm.database"
 })
 @EnableAutoConfiguration
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DatabaseConfiguration {
 
     private Environment environment;
-
-    @Autowired
-    public DatabaseConfiguration(Environment environment) {
-        this.environment = environment;
-    }
 
     @SuppressWarnings("ConstantConditions")
     @Bean

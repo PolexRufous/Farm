@@ -2,15 +2,15 @@ package com.farm.database.entities.accounts;
 
 import com.farm.database.entities.FarmEntity;
 import com.farm.database.entities.personality.Partner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.apache.commons.lang3.ObjectUtils;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
-
-import static java.util.Objects.isNull;
 
 @Entity
 @Table(name = "ACCOUNT")
@@ -21,6 +21,7 @@ public class Account implements FarmEntity, Serializable {
     @Column(name = "ID")
     private Long id;
 
+    @NotNull
     @Column(name = "ACCOUNT_NUMBER", unique = true, nullable = false)
     private String accountNumber;
 
@@ -28,19 +29,25 @@ public class Account implements FarmEntity, Serializable {
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
-    @ManyToOne
+    @ManyToOne(optional = false, targetEntity = Partner.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "PARTNER_ID", nullable = false, referencedColumnName = "ID")
     @Valid
-    @NotNull
-    @JoinColumn(name = "PARTNER_ID", referencedColumnName = "ID")
+    @JsonIgnore
     private Partner partner;
 
+    @NotNull
+    @Column(name = "PARTNER_ID", insertable = false, updatable = false)
+    private Long partnerId;
+
     @Column(name = "BALANCE")
-    private BigDecimal balance = BigDecimal.ZERO;
+    private BigDecimal balance;
+
+    @NotNull
+    @Column(name = "SUBJECT")
+    private String subject;
 
     @PrePersist
-    private void setAccountNumber() {
-        if (isNull(accountNumber)) {
-            accountNumber = accountType.getAccountCode().concat(partner.getId().toString());
-        }
+    private void setZeroBalanceIfNull() {
+        balance = ObjectUtils.defaultIfNull(balance, BigDecimal.ZERO);
     }
 }

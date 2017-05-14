@@ -3,7 +3,6 @@ package com.farm.database.entities.accounts
 import com.farm.environment.configuration.FarmPropertySourceConfiguration
 import org.springframework.context.MessageSource
 import org.springframework.test.context.ContextConfiguration
-import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
@@ -14,16 +13,16 @@ import javax.annotation.Resource
 class AccountTypeSpec extends Specification {
     @Resource
     @Subject
-    MessageSource messageSource;
+    MessageSource messageSource
 
     def setup() {
-        Locale.setDefault(Locale.ENGLISH);
+        Locale.setDefault(Locale.ENGLISH)
     }
 
     @Unroll
     def "should create correct bank account description when locale=#locale"() {
         when:
-        def description = messageSource.getMessage(input, null, "", locale);
+        def description = messageSource.getMessage(input, null, locale)
 
         then:
         description == expectedOutput

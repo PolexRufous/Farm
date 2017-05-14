@@ -2,6 +2,8 @@ package com.farm.rest;
 
 import com.farm.database.entities.personality.Partner;
 import com.farm.processes.PartnerProcess;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,14 +15,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/rest/partner")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PartnersRestEndpoint {
 
+    @NonNull
     private PartnerProcess partnerProcess;
-
-    @Autowired
-    public PartnersRestEndpoint(PartnerProcess partnerProcess) {
-        this.partnerProcess = partnerProcess;
-    }
 
     @GetMapping
     @CrossOrigin

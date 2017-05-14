@@ -1,7 +1,5 @@
 package com.farm.database.entities.operations;
 
-import com.farm.executors.operations.OperationExecutor;
-import com.farm.executors.operations.PaySalaryCashUaOperationExecutor;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,31 +8,33 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum OperationType
 {
-  PAY_SALARY_CASH_UA("", "", PaySalaryCashUaOperationExecutor.class),
+  PAY_SALARY_CASH_UA("", ""),
+  PAY_FOR_RAW_MATERIALS_CASH_UA("", ""),
 
-  BUY_PROD_FUEL_CASH_UA("", "", null),
-  BUY_RAW_MATERIALS_CASH_UA("", "", null),
-  BUY_MBP_CASH_UA("", "", null),
+  BUY_PROD_FUEL_CASH_UA("", ""),
+  BUY_RAW_MATERIALS_CASH_UA("", ""),
+  BUY_MBP_CASH_UA("", ""),
 
-  BUY_VEHICLE_CASH("", "", null),
-  BUY_TOOLS_CASH("", "", null),
+  BUY_VEHICLE_CASH("", ""),
+  BUY_TOOLS_CASH("", ""),
 
-  SELL_FINISHED_PRODUCTION_CASH("", "", null),
-  SELL_ALIVE_ANIMALS("", "", null),
+  SELL_FINISHED_PRODUCTION_CASH("", ""),
+  SELL_ALIVE_ANIMALS("", ""),
 
-  SELL_ACTIVES_VEHICLES("", "", null),
+  SELL_ACTIVES_VEHICLES("", ""),
 
-  RECEIVE_PROD_FUEL_UA("", "", null),
-  RECEIVE_RAW_MATERIALS_UA("", "", null),
-  RECEIVE_MBP_UA("", "", null),
-  RECEIVE_VEHICLE_UA("", "", null),
-  RECEIVE_TOOLS_UA("", "", null),
+  RECEIVE_PROD_FUEL_UA("", ""),
+  RECEIVE_RAW_MATERIALS_UA("", ""),
+  RECEIVE_MBP_UA("", ""),
+  RECEIVE_VEHICLE_UA("", ""),
+  RECEIVE_TOOLS_UA("", ""),
 
-  SHIP_ACTIVES_VEHICLE("", "", null),
-  SHIP_FINISHED_PRODUCTION("", "", null),
-  SHIP_ALIVE_ANIMALS("", "", null);
+  POSTING_OF_SALARY("", ""),
+
+  SHIP_ACTIVES_VEHICLE("", ""),
+  SHIP_FINISHED_PRODUCTION("", ""),
+  SHIP_ALIVE_ANIMALS("", "");
 
   private String shortDescription;
   private String description;
-  private Class<? extends OperationExecutor> executorClass;
 }
