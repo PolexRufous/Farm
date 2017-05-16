@@ -7,7 +7,7 @@ import com.farm.database.entities.operations.OperationRepository
 import com.farm.database.entities.operations.OperationType
 import com.farm.database.entities.personality.Partner
 import com.farm.executors.operations.OperationExecutionResult
-import com.farm.executors.operations.external.ExternalOperationExecutor
+import com.farm.executors.operations.ExternalOperationExecutor
 import spock.lang.Ignore
 import org.springframework.context.ApplicationContext
 import spock.lang.Specification

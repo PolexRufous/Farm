@@ -1,0 +1,59 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="PolexRufous" id="createOperationExecutionParameters">
+        <createTable tableName="OPERATION_EXECUTION_PARAMETERS">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="OPERATION_TYPE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_TYPE_TO" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATION_MESSAGE_KEY" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CHECK_FUNDS_NEEDED" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_NUMBER_TO" type="VARCHAR(255)" />
+        </createTable>
+        <insert tableName="OPERATION_EXECUTION_PARAMETERS">
+            <column name="ID" valueNumeric="1"/>
+            <column name="OPERATION_TYPE" value="PAY_FOR_RAW_MATERIALS_CASH_UA"/>
+            <column name="ACCOUNT_TYPE_TO" value="CALCULATION_PROVIDERS_UA"/>
+            <column name="OPERATION_MESSAGE_KEY" value="payment.description"/>
+            <column name="CHECK_FUNDS_NEEDED" valueBoolean="true"/>
+            <column name="ACCOUNT_NUMBER_TO" value="null"/>
+        </insert>
+        <insert tableName="OPERATION_EXECUTION_PARAMETERS">
+            <column name="ID" valueNumeric="2"/>
+            <column name="OPERATION_TYPE" value="RECEIVE_RAW_MATERIALS_UA"/>
+            <column name="ACCOUNT_TYPE_TO" value="RESERVES_PROD_RAW_MATERIALS"/>
+            <column name="OPERATION_MESSAGE_KEY" value="receive.description"/>
+            <column name="CHECK_FUNDS_NEEDED" valueBoolean="false"/>
+            <column name="ACCOUNT_NUMBER_TO" value="null"/>
+        </insert>
+        <insert tableName="OPERATION_EXECUTION_PARAMETERS">
+            <column name="ID" valueNumeric="3"/>
+            <column name="OPERATION_TYPE" value="PAY_SALARY_CASH_UA"/>
+            <column name="ACCOUNT_TYPE_TO" value="CALCULATIONS_WORKER_SALARY"/>
+            <column name="OPERATION_MESSAGE_KEY" value="payment.description"/>
+            <column name="CHECK_FUNDS_NEEDED" valueBoolean="true"/>
+            <column name="ACCOUNT_NUMBER_TO" value="null"/>
+        </insert>
+        <insert tableName="OPERATION_EXECUTION_PARAMETERS">
+            <column name="ID" valueNumeric="4"/>
+            <column name="OPERATION_TYPE" value="POSTING_OF_SALARY"/>
+            <column name="ACCOUNT_TYPE_TO" value="EXPENSES_SALARY_BASE"/>
+            <column name="OPERATION_MESSAGE_KEY" value="posting.description"/>
+            <column name="CHECK_FUNDS_NEEDED" valueBoolean="false"/>
+            <column name="ACCOUNT_NUMBER_TO" value="811000001"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

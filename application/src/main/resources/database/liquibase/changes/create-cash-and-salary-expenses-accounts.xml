@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="PolexRufous" id="clearOperationsAndAccountsTables">
+        <insert tableName="account">
+            <column name="ID" valueNumeric="-1"/>
+            <column name="account_number" value="301000001"/>
+            <column name="balance" valueNumeric="100000"/>
+            <column name="account_type" value="MONEY_CASH_UA"/>
+            <column name="partner_id" valueNumeric="0"/>
+            <column name="subject" value="Деньги в кассе"/>
+        </insert>
+        <insert tableName="account">
+            <column name="ID" valueNumeric="-2"/>
+            <column name="account_number" value="811000001"/>
+            <column name="balance" valueNumeric="0"/>
+            <column name="account_type" value="EXPENSES_SALARY_BASE"/>
+            <column name="partner_id" valueNumeric="0"/>
+            <column name="subject" value="Расходы по зарплате"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

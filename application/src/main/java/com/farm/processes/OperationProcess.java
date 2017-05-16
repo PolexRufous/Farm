@@ -3,12 +3,10 @@ package com.farm.processes;
 import com.farm.database.entities.operations.Operation;
 import com.farm.database.entities.operations.OperationRepository;
 import com.farm.executors.operations.OperationExecutionResult;
-import com.farm.executors.operations.OperationExecutor;
-import com.farm.executors.operations.external.ExternalOperationExecutor;
+import com.farm.executors.operations.ExternalOperationExecutor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

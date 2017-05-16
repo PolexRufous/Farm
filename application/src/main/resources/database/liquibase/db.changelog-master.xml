@@ -12,4 +12,8 @@
     <include file="database/liquibase/changes/update-operation-table.xml" />
     <include file="database/liquibase/changes/update-account-table.xml" />
     <include file="database/liquibase/changes/update-document-table.xml" />
+    <include file="database/liquibase/changes/create-document-execution-parameters.xml" />
+    <include file="database/liquibase/changes/create-operation-execution-parameters.xml" />
+    <include file="database/liquibase/changes/clear-operations-and-account-tables.xml" />
+    <include file="database/liquibase/changes/create-cash-and-salary-expenses-accounts.xml" />
 </databaseChangeLog>

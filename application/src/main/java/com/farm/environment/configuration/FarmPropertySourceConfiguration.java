@@ -21,8 +21,8 @@ public class FarmPropertySourceConfiguration {
 
     @Bean
     public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource =
-                new ReloadableResourceBundleMessageSource();
+        ResourceBundleMessageSource messageSource =
+                new ResourceBundleMessageSource();
         messageSource.setBasenames(
                 "/database/accountDescriptions",
                 "/database/operationTypeDescriptions",

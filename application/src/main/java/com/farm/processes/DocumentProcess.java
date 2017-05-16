@@ -3,7 +3,7 @@ package com.farm.processes;
 import com.farm.database.entities.documents.Document;
 import com.farm.database.entities.documents.DocumentRepository;
 import com.farm.executors.documents.DocumentExecutionResult;
-import com.farm.executors.documents.external.ExternalDocumentExecutor;
+import com.farm.executors.documents.ExternalDocumentExecutor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

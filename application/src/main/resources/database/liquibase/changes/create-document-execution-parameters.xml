@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="PolexRufous" id="createDocumentExecutionParameters">
+        <createTable tableName="DOCUMENT_EXECUTION_PARAMETERS">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="DOCUMENT_TYPE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PAYMENT_OPERATION_TYPE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RECEIVE_OPERATION_TYPE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="START_ACCOUNT_NEEDED" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="DOCUMENT_EXECUTION_PARAMETERS">
+            <column name="ID" valueNumeric="1"/>
+            <column name="DOCUMENT_TYPE" value="BUY_RAW_MATERIALS"/>
+            <column name="PAYMENT_OPERATION_TYPE" value="PAY_FOR_RAW_MATERIALS_CASH_UA"/>
+            <column name="RECEIVE_OPERATION_TYPE" value="RECEIVE_RAW_MATERIALS_UA"/>
+            <column name="START_ACCOUNT_NEEDED" valueBoolean="true"/>
+        </insert>
+        <insert tableName="DOCUMENT_EXECUTION_PARAMETERS">
+            <column name="ID" valueNumeric="2"/>
+            <column name="DOCUMENT_TYPE" value="PAY_SALARY"/>
+            <column name="PAYMENT_OPERATION_TYPE" value="PAY_SALARY_CASH_UA"/>
+            <column name="RECEIVE_OPERATION_TYPE" value="POSTING_OF_SALARY"/>
+            <column name="START_ACCOUNT_NEEDED" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

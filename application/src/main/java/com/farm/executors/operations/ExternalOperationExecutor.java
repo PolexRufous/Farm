@@ -1,12 +1,8 @@
-package com.farm.executors.operations.external;
+package com.farm.executors.operations;
 
 import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.documents.Document;
-import com.farm.database.entities.operations.Operation;
-import com.farm.database.entities.operations.OperationRepository;
-import com.farm.database.entities.operations.OperationType;
-import com.farm.executors.operations.OperationExecutionResult;
-import com.farm.executors.operations.OperationExecutor;
+import com.farm.database.entities.operations.*;
 import com.farm.executors.validators.OperationSufficientFundsValidator;
 import com.farm.processes.AccountProcess;
 import com.farm.processes.PartnerProcess;
@@ -29,7 +25,7 @@ public class ExternalOperationExecutor implements OperationExecutor {
     @NonNull
     private OperationRepository operationRepository;
     @NonNull
-    private Map<OperationType, ExternalOperationParameters> operationTypeExternalOperationParametersMap;
+    private OperationExecutionParametersRepository operationExecutionParametersRepository;
     @NonNull
     private OperationSufficientFundsValidator operationSufficientFundsValidator;
     @NonNull
@@ -54,10 +50,9 @@ public class ExternalOperationExecutor implements OperationExecutor {
             errors.put("id", "Операция с указанным ID не найдена");
         }
 
-        //FIXME implement parameters container into database
         if (Objects.nonNull(originalOperation)) {
-            ExternalOperationParameters parameters =
-                    operationTypeExternalOperationParametersMap.get(originalOperation.getOperationType());
+            OperationExecutionParameters parameters =
+                    operationExecutionParametersRepository.findByOperationType(originalOperation.getOperationType());
             //TODO create implementation of different amounts which don't mach original amount
             if (parameters.isCheckFundsNeeded()) {
                 errors.putAll(operationSufficientFundsValidator.validate(
@@ -89,17 +84,22 @@ public class ExternalOperationExecutor implements OperationExecutor {
             Document document,
             Account accountFrom) {
 
-        ExternalOperationParameters parameters =
-                operationTypeExternalOperationParametersMap.get(operationType);
+        OperationExecutionParameters parameters =
+                operationExecutionParametersRepository.findByOperationType(operationType);
 
-
-        Account accountTo = Optional.ofNullable(parameters.getAccountNumberTo())
-                .map(accountProcess::findByNumber)
-                .orElse(
-                        accountProcess.createAccount(
-                                parameters.getAccountTypeTo(),
-                                document.getPartner(),
-                                document.getSubject()));
+        Account accountTo;
+        if (Objects.isNull(parameters.getAccountNumberTo())){
+            //FIXME check if account to need to be a farm account
+            accountTo = accountProcess.createAccount(
+                    parameters.getAccountTypeTo(),
+                    document.getPartner(),
+                    document.getSubject());
+        } else {
+            accountTo = accountProcess.findByNumber(parameters.getAccountNumberTo());
+            if (Objects.isNull(accountTo)){
+                return new OperationExecutionResult(null, Collections.singletonMap("accountTo", "not found"));
+            }
+        }
 
         Operation result = operationRepository.save(
                 createOperationWithoutType(document)
