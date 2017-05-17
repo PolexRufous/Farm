@@ -1,26 +1,19 @@
 package com.farm.database.entities.documents;
 
 import com.farm.database.entities.FarmEntity;
-import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.operations.Operation;
 import com.farm.database.entities.personality.Partner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.Getter;
 import lombok.experimental.Accessors;
-import org.apache.commons.lang3.ObjectUtils;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "DOCUMENT")

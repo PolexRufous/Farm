@@ -24,8 +24,10 @@ import java.util.*;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ExternalDocumentExecutor implements DocumentExecutor {
 
+    private static final String PARAMETERS_KEY = "parameters";
+
     @Value("${validation.error.not.exist}")
-    private String IS_NOT_EXIST;
+    private String isNotExist;
 
     @NonNull
     private PartnerProcess partnerProcess;
@@ -46,12 +48,12 @@ public class ExternalDocumentExecutor implements DocumentExecutor {
         Map<String, String> errors = validate(document, parameters);
 
         Account accountFrom = null;
-        if (parameters.isStartAccountNeeded()){
+        if (Objects.nonNull(parameters) && parameters.isStartAccountNeeded()){
             accountFrom = Optional.ofNullable(document.getStartAccountNumber())
                     .map(accountProcess::findByNumber)
                     .orElse(null);
             if (Objects.isNull(accountFrom)){
-                errors.put("startAccountNumber", IS_NOT_EXIST);
+                errors.put("startAccountNumber", isNotExist);
             }
         }
 
@@ -59,7 +61,7 @@ public class ExternalDocumentExecutor implements DocumentExecutor {
             return new DocumentExecutionResult(null, errors);
         }
 
-        //FIXME implement if errors of creation of operations are possible
+        //TODO implement if errors of creation of operations are possible
         Operation payment = externalOperationExecutor
                 .executeCreate(parameters.getPaymentOperationType(), document, accountFrom)
                 .getResult();
@@ -82,10 +84,18 @@ public class ExternalDocumentExecutor implements DocumentExecutor {
     private Map<String, String> validate(Document document, DocumentExecutionParameters parameters){
         Map<String, String> errors = new HashMap<>();
         if (!checkAndSetPartner(document)) {
-            errors.put("partner", IS_NOT_EXIST);
+            errors.put("partner", isNotExist);
         }
         if (Objects.isNull(parameters)){
-            errors.put("parameters", "Parameters for current document type execution were not found");
+            errors.put(PARAMETERS_KEY, "Parameters for current document type execution were not found");
+        }
+
+        if (Objects.nonNull(parameters)){
+            if (Objects.isNull(parameters.getPaymentOperationType())){
+                errors.put(PARAMETERS_KEY, "Payment operation type is not defined into parameters");
+            } else if (Objects.isNull(parameters.getReceiveOperationType())){
+                errors.put(PARAMETERS_KEY, "Receive operation type is not defined into parameters");
+            }
         }
         return errors;
     }
