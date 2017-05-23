@@ -33,19 +33,20 @@ public class AccountProcess {
     }
 
     public Account createAccount(AccountType accountType, @Valid Partner partner, String subject) {
-        Account account = new Account();
-        account.setAccountType(accountType);
-        account.setPartner(partner);
-        account.setPartnerId(partner.getId());
-        account.setSubject(subject);
-        account.setAccountNumber(getAccountNumber(accountType, partner));
+        Account account = new Account()
+                .setAccountType(accountType)
+                .setPartner(partner)
+                .setPartnerId(partner.getId())
+                .setSubject(subject)
+                .setAccountNumber(getAccountNumber(accountType, partner));
 
         return accountRepository.save(account);
     }
 
     private String getAccountNumber(AccountType accountType, Partner partner) {
         String randomPart = getAccountRandomPart();
-        String number = accountType.getAccountCode()
+        String number = accountType
+                .getAccountCode()
                 .concat(partner.getId().toString())
                 .concat(randomPart);
         return isNumberExist(number) ? getAccountNumber(accountType, partner) : number;

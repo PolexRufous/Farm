@@ -4,6 +4,7 @@ import com.farm.database.entities.FarmEntity;
 import com.farm.database.entities.personality.Partner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.apache.commons.lang3.ObjectUtils;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ACCOUNT")
+@Accessors(chain = true)
 @Data
 public class Account implements FarmEntity, Serializable {
     @Id

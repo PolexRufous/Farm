@@ -3,6 +3,7 @@ package com.farm.database.entities.personality;
 import com.farm.database.entities.FarmEntity;
 import com.farm.database.entities.address.Address;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "PARTNER")
+@Accessors(chain = true)
 @Data
 public class Partner implements FarmEntity, Serializable
 {

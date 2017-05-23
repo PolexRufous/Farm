@@ -36,17 +36,18 @@ public class ExternalOperationExecutor implements OperationExecutor {
     private MessageSource messageSource;
 
     @Override
+    @Transactional
     public OperationExecutionResult execute(@Valid Operation operation) {
         Map<String, String> errors = new HashMap<>();
 
         Operation originalOperation = operationRepository.findOne(operation.getId());
 
         if (Objects.isNull(operation.getFactCommitDate())) {
-            //FIXME try to use properties
+            //TODO try to use properties
             errors.put("factCommitDate", "должно быть задано");
         }
         if (Objects.isNull(originalOperation)) {
-            //FIXME try to use parameters
+            //TODO try to use parameters
             errors.put("id", "Операция с указанным ID не найдена");
         }
 
@@ -81,8 +82,8 @@ public class ExternalOperationExecutor implements OperationExecutor {
     @Override
     public OperationExecutionResult executeCreate(
             OperationType operationType,
-            Document document,
-            Account accountFrom) {
+            @Valid Document document,
+            @Valid Account accountFrom) {
 
         OperationExecutionParameters parameters =
                 operationExecutionParametersRepository.findByOperationType(operationType);
@@ -112,7 +113,6 @@ public class ExternalOperationExecutor implements OperationExecutor {
         return new OperationExecutionResult(result, Collections.emptyMap());
     }
 
-    @Transactional
     private void transferFunds(Account accountFrom, Account accountTo, BigDecimal amount) {
         accountFrom.setBalance(accountFrom.getBalance().subtract(amount));
         accountTo.setBalance(accountTo.getBalance().add(amount));

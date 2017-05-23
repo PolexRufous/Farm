@@ -6,6 +6,7 @@ import com.farm.database.entities.accounts.AccountType
 import com.farm.database.entities.personality.Partner
 import spock.lang.Specification
 import spock.lang.Subject
+import spock.lang.Unroll
 
 class AccountProcessSpec extends Specification {
     @Subject
@@ -52,5 +53,28 @@ class AccountProcessSpec extends Specification {
 
         then:
         result.getId() == accountId
+    }
+
+    @Unroll
+    def "should return expected result (#expectedResult) for input (#input)"() {
+        given:
+        accountRepository.findByAccountNumber("65432") >> null
+        accountRepository.findByAccountNumber("12345") >> new Account(id: 1L, accountNumber: "12345")
+
+        when:
+        Account result = accountProcess.findByNumber(input)
+
+        then:
+        result == expectedResult
+        if (input == null) {
+            0 * accountRepository.findByAccountNumber(_ as String)
+        }
+
+        where:
+        input   | expectedResult
+        null    | null
+        "65432" | null
+        "12345" | new Account(id: 1L, accountNumber: "12345")
+
     }
 }

@@ -2,12 +2,14 @@ package com.farm.database.entities.operations;
 
 import com.farm.database.entities.accounts.AccountType;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "OPERATION_EXECUTION_PARAMETERS")
+@Accessors(chain = true)
 @Data
 public class OperationExecutionParameters {
     @Id
