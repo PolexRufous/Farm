@@ -29,7 +29,9 @@ public class AccountProcess {
     }
 
     public Account saveAccount(Account account) {
-        return accountRepository.save(account);
+        return Optional.ofNullable(account)
+                .map(accountRepository::save)
+                .orElse(null);
     }
 
     public Account createAccount(AccountType accountType, @Valid Partner partner, String subject) {
