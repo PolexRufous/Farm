@@ -54,16 +54,13 @@ public class AccountProcessTest {
         if (Objects.nonNull(number) && number.matches("\\d+")) {
             assertTrue(Objects.nonNull(result));
             verify(accountRepository, times(1)).findByAccountNumber(number);
-            verifyNoMoreInteractions(accountRepository);
         } else {
             assertTrue(Objects.isNull(result));
-            if (Objects.isNull(number)) {
-                verifyNoMoreInteractions(accountRepository);
-            } else {
+            if (Objects.nonNull(number)) {
                 verify(accountRepository, times(1)).findByAccountNumber(number);
-                verifyNoMoreInteractions(accountRepository);
             }
         }
+        verifyNoMoreInteractions(accountRepository);
     }
 
     @Test
