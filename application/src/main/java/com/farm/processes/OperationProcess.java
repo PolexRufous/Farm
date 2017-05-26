@@ -1,19 +1,22 @@
 package com.farm.processes;
 
-import com.farm.database.entities.operations.Operation;
-import com.farm.database.entities.operations.OperationRepository;
-import com.farm.executors.operations.OperationExecutionResult;
-import com.farm.executors.operations.ExternalOperationExecutor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import com.farm.database.entities.operations.Operation;
+import com.farm.database.entities.operations.OperationRepository;
+import com.farm.executors.operations.OperationExecutionResult;
+import com.farm.executors.operations.OperationExecutor;
+
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
@@ -24,7 +27,7 @@ public class OperationProcess {
     @NonNull
     private PartnerProcess partnerProcess;
     @NonNull
-    private ExternalOperationExecutor externalOperationExecutor;
+    private OperationExecutor operationExecutor;
 
     public void fillOperationPartner(Operation operation) {
         Long partnerId = operation.getPartnerId();
@@ -46,7 +49,7 @@ public class OperationProcess {
     }
 
     public OperationExecutionResult execute(@Valid Operation operation) {
-        return externalOperationExecutor.execute(operation);
+        return operationExecutor.execute(operation);
     }
 
     public List<Operation> findByDocumentId(Long documentId){

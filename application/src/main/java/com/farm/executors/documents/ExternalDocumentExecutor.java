@@ -1,5 +1,19 @@
 package com.farm.executors.documents;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.apache.commons.collections4.MapUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.documents.Document;
 import com.farm.database.entities.documents.DocumentExecutionParameters;
@@ -7,18 +21,12 @@ import com.farm.database.entities.documents.DocumentExecutionParametersRepositor
 import com.farm.database.entities.documents.DocumentRepository;
 import com.farm.database.entities.operations.Operation;
 import com.farm.database.entities.personality.Partner;
-import com.farm.executors.operations.ExternalOperationExecutor;
+import com.farm.executors.operations.OperationExecutor;
 import com.farm.processes.AccountProcess;
 import com.farm.processes.PartnerProcess;
+
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.collections4.MapUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import javax.validation.Valid;
-import java.util.*;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -34,7 +42,7 @@ public class ExternalDocumentExecutor implements DocumentExecutor {
     @NonNull
     private DocumentRepository documentRepository;
     @NonNull
-    private ExternalOperationExecutor externalOperationExecutor;
+    private OperationExecutor operationExecutor;
     @NonNull
     private AccountProcess accountProcess;
     @NonNull
@@ -62,10 +70,10 @@ public class ExternalDocumentExecutor implements DocumentExecutor {
         }
 
         //TODO implement if errors of creation of operations are possible
-        Operation payment = externalOperationExecutor
+        Operation payment = operationExecutor
                 .executeCreate(parameters.getPaymentOperationType(), document, accountFrom)
                 .getResult();
-        Operation receiving = externalOperationExecutor
+        Operation receiving = operationExecutor
                 .executeCreate(parameters.getReceiveOperationType(), document, payment.getAccountTo())
                 .getResult();
 
