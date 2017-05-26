@@ -1,6 +1,5 @@
 package com.farm.processes;
 
-import com.farm.database.entities.address.Address;
 import com.farm.database.entities.personality.Partner;
 import com.farm.database.entities.personality.PartnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +18,18 @@ public class PartnerProcess {
         this.addressProcess = addressProcess;
     }
 
-    public Partner save(Partner partner){
+    public Partner save(Partner partner) {
         return partnerRepository.save(partner);
     }
 
-    public Partner findById(long id){
+    public Partner findById(long id) {
         return partnerRepository.findOne(id);
     }
 
-    public Partner findByName(String name){
-        return partnerRepository.findByName(name);
-    }
-
-    public Partner update(Partner partner){
+    public Partner update(Partner partner) {
         Partner oldPartner = partnerRepository.findOne(partner.getId());
         oldPartner.update(partner);
-        oldPartner.getAddresses().forEach(addressProcess :: update);
+        oldPartner.getAddresses().forEach(addressProcess::update);
         return partnerRepository.save(oldPartner);
     }
 

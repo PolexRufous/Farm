@@ -2,12 +2,14 @@ package com.farm.database.entities.address;
 
 import com.farm.database.entities.FarmEntity;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "ADDRESS")
+@Accessors(chain = true)
 @Data
 public class Address implements FarmEntity, Serializable {
 
@@ -19,7 +21,8 @@ public class Address implements FarmEntity, Serializable {
     @Column
     private String town;
 
-    public void update(Address donorAddress) {
+    public Address update(Address donorAddress) {
         this.town = donorAddress.town;
+        return this;
     }
 }

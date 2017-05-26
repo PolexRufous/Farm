@@ -108,7 +108,8 @@ class ExternalDocumentExecutorSpec extends Specification {
                 id: 1L,
                 paymentOperationType: payOpType,
                 receiveOperationType: resOpType,
-                startAccountNeeded: stAccNeeded
+                startAccountNeeded: stAccNeeded,
+                documentType: DocumentType.PAY_SALARY
         )
 
         def startAccount = new Account(

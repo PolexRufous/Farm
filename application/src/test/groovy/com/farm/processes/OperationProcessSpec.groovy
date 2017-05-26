@@ -1,71 +1,23 @@
 package com.farm.processes
 
-import com.farm.database.entities.accounts.Account
-import com.farm.database.entities.accounts.AccountType
 import com.farm.database.entities.operations.Operation
 import com.farm.database.entities.operations.OperationRepository
-import com.farm.database.entities.operations.OperationType
 import com.farm.database.entities.personality.Partner
-import com.farm.executors.operations.OperationExecutionResult
-import com.farm.executors.operations.ExternalOperationExecutor
-import spock.lang.Ignore
-import org.springframework.context.ApplicationContext
+import com.farm.executors.operations.OperationExecutor
 import spock.lang.Specification
 import spock.lang.Subject
-import spock.lang.Unroll
-
-import java.sql.Date
 
 class OperationProcessSpec extends Specification {
 
     @Subject
-    operationProcess;
-    def cashUaOperationExecutor
+    OperationProcess operationProcess
     def operationRepository = Mock(OperationRepository)
-    def appContext = Stub(ApplicationContext)
     def partnerProcess = Stub(PartnerProcess)
-    def accountProcess = Stub(AccountProcess)
-    def externalOperationExecutor = Stub(ExternalOperationExecutor)
+    def operationExecutor = Stub(OperationExecutor)
 
     void setup() {
         operationProcess =
-                new OperationProcess(operationRepository, partnerProcess, externalOperationExecutor)
-    }
-
-    @Unroll
-    @Ignore
-    def "should make all checks before save when amout=#amout and balanceOfFarm=#balanceOfFarm"() {
-        given:
-        Partner partner = new Partner()
-        Operation operation = new Operation(
-                enterDate: new Date(dateInMills),
-                amount: BigDecimal.valueOf(amout),
-                partner: partner,
-                operationType: operationType)
-
-        accountProcess.findOrCreateByType(AccountType.MONEY_CASH_UA, Partner.getFarm()) >> new Account(balance: BigDecimal.valueOf(balanceOfFarm))
-        accountProcess.findOrCreateByType(AccountType.CALCULATIONS_WORKER_SALARY, partner) >> new Account()
-        appContext.getBean(operationType.getExecutorClass()) >> cashUaOperationExecutor
-
-        when:
-        OperationExecutionResult result = operationProcess.save(operation)
-
-        then:
-        operationRepositoryCalls * operationRepository.save(_) >> operation
-        result.hasNoErrors() == expectedResult
-        if (result.result != null) {
-            with(result.result) {
-                getAmount() == 500L
-                getPartner() == partner
-                getEnterDate() == new Date(dateInMills)
-                getOperationType() == operationType
-            }
-        }
-
-        where:
-        dateInMills | amout | balanceOfFarm | operationType                    | expectedResult | operationRepositoryCalls
-        100000L     | 500L  | 600L          | OperationType.PAY_SALARY_CASH_UA | true           | 1
-        100000L     | 500L  | 400L          | OperationType.PAY_SALARY_CASH_UA | false          | 0
+                new OperationProcess(operationRepository, partnerProcess, operationExecutor)
     }
 
     def "should fill operation with partner from repository"() {
@@ -110,5 +62,71 @@ class OperationProcessSpec extends Specification {
         then:
         result.get(0).getId() == id1
         result.get(1).getId() == id2
+    }
+
+    def "should find operation by id"() {
+        given:
+        def id1 = 1L
+        operationRepository.findOne(id1) >> new Operation(id: id1)
+
+        when:
+        def result = operationProcess.findById(id1)
+
+        then:
+        result.getId() == id1
+    }
+
+    def "should not try to find operation by id with null param"() {
+        given:
+        def id1 = null
+        operationRepository.findOne(id1) >> new Operation(id: id1)
+
+        when:
+        def result = operationProcess.findById(id1)
+
+        then:
+        result == null
+        0 * operationRepository._
+    }
+
+    def "should not try to delegate execute with null param"() {
+        given:
+        def operation = null
+        operationExecutor.execute(operation) >> null
+
+        when:
+        def result = operationProcess.execute(operation)
+
+        then:
+        result == null
+        0 * operationExecutor._
+    }
+
+    def "should find operation by document id"() {
+        given:
+        def id1 = 1L
+        def id2 = 2L
+        def docId = 1L
+        operationRepository.findAllByDocumentId(docId) >> [new Operation(id: id1), new Operation(id: id2)]
+
+        when:
+        def result = operationProcess.findByDocumentId(docId)
+
+        then:
+        result.get(0).getId() == id1
+        result.get(1).getId() == id2
+    }
+
+    def "should not try to find operation by document id with null param"() {
+        given:
+        def docId = null
+        operationRepository.findAllByDocumentId(docId) >> null
+
+        when:
+        def result = operationProcess.findByDocumentId(docId)
+
+        then:
+        result == []
+        0 * operationRepository._
     }
 }
