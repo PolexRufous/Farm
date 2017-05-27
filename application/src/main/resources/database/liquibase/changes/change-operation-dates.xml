@@ -6,7 +6,7 @@
           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet author="PolexRufous" id="changeOperationDates">
         <modifyDataType tableName="account" columnName="balance" newDataType="NUMERIC" />
-        <renameColumn newColumnName="enter_date" oldColumnName="date" tableName="operation"/>
+        <renameColumn newColumnName="enter_date" oldColumnName="date" tableName="operation" columnDataType="date"/>
         <addColumn tableName="operation">
             <column name="expected_commit_date" type="date"/>
         </addColumn>
@@ -19,6 +19,6 @@
         <sql>UPDATE operation SET fact_commit_date = enter_date</sql>
     </changeSet>
     <changeSet author="PolexRufous" id="addNotNullConstrainToExpectedCommitDateOfOperation">
-        <addNotNullConstraint tableName="operation" columnName="expected_commit_date" columnDataType="enterDate"/>
+        <addNotNullConstraint tableName="operation" columnName="expected_commit_date" columnDataType="date"/>
     </changeSet>
 </databaseChangeLog>

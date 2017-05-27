@@ -26,14 +26,14 @@ public class AddressRestEndpoint {
         return Optional.of(addressProcess.getAll())
                 .filter(CollectionUtils::isNotEmpty)
                 .map(ResponseEntity::ok)
-                .orElseThrow(RuntimeException::new);
+                .orElse(ResponseEntity.noContent().build());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getOne(@PathVariable("id") Long id) {
         return Optional.of(addressProcess.getOne(id))
                 .map(ResponseEntity::ok)
-                .orElseThrow(RuntimeException::new);
+                .orElse(ResponseEntity.noContent().build());
     }
 
     @PostMapping
@@ -42,7 +42,7 @@ public class AddressRestEndpoint {
         return Optional.of(address)
                 .map(addressProcess::save)
                 .map(ResponseEntity::ok)
-                .orElseThrow(RuntimeException::new);
+                .orElse(ResponseEntity.badRequest().build());
     }
 
     @PutMapping
@@ -51,7 +51,7 @@ public class AddressRestEndpoint {
         return Optional.of(address)
                 .map(addressProcess::update)
                 .map(ResponseEntity::ok)
-                .orElseThrow(RuntimeException::new);
+                .orElse(ResponseEntity.badRequest().build());
     }
 
     @DeleteMapping("/{id}")
@@ -62,6 +62,6 @@ public class AddressRestEndpoint {
                     addressProcess.delete(curId);
                     return ResponseEntity.accepted().build();
                 })
-                .orElseThrow(RuntimeException::new);
+                .orElse(ResponseEntity.badRequest().build());
     }
 }
