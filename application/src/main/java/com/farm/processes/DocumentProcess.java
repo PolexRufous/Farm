@@ -7,10 +7,15 @@ import com.farm.executors.documents.ExternalDocumentExecutor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -29,5 +34,15 @@ public class DocumentProcess {
         return Optional.ofNullable(id)
                 .map(documentRepository::findOne)
                 .orElse(null);
+    }
+
+    public Page<Document> getFirsFiveByDate() {
+        return documentRepository.findAll(new PageRequest(0, 5, Sort.Direction.ASC, "enterDate"));
+    }
+
+    public Page<Document> findFiveByAmount(int pageNumber, BigDecimal amount) {
+        return documentRepository.getAllByAmountGreaterThan(
+                amount,
+                new PageRequest(pageNumber, 5, Sort.Direction.ASC, "enterDate"));
     }
 }

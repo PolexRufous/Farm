@@ -7,11 +7,14 @@ import com.farm.processes.DocumentProcess;
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Consumes;
+
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 
@@ -43,6 +46,24 @@ public class DocumentRestEndpoint {
     @CrossOrigin
     public ResponseEntity getById(@PathVariable Long id){
         return Optional.ofNullable(documentProcess.findById(id))
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());
+    }
+
+    @GetMapping("/page")
+    @CrossOrigin
+    public ResponseEntity getFirstFiveByDate() {
+        return Optional.of(documentProcess.getFirsFiveByDate())
+                .filter(Slice::hasContent)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());
+    }
+
+    @GetMapping("/amount/{amount}/{pageNumber}")
+    @CrossOrigin
+    public ResponseEntity getFiveByAmount(@PathVariable double amount, @PathVariable int pageNumber) {
+        return Optional.of(documentProcess.findFiveByAmount(pageNumber, BigDecimal.valueOf(amount)))
+                .filter(Slice::hasContent)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.noContent().build());
     }
