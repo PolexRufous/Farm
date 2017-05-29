@@ -68,4 +68,12 @@ public class Document implements FarmEntity{
 
     @Transient
     private String startAccountNumber;
+
+    @Transient
+    private String partnerName;
+
+    @PostLoad
+    private void populatePartnerName(){
+        partnerName = partner.getName();
+    }
 }

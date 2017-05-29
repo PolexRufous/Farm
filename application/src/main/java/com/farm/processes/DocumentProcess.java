@@ -36,12 +36,13 @@ public class DocumentProcess {
                 .orElse(null);
     }
 
-    public Page<Document> getFirsFiveByDate() {
-        return documentRepository.findAll(new PageRequest(0, 5, Sort.Direction.ASC, "enterDate"));
+    public Page<Document> getLastFiveByDate() {
+        return documentRepository.findAllByOrderByEnterDateDesc(
+                new PageRequest(0, 5));
     }
 
     public Page<Document> findFiveByAmount(int pageNumber, BigDecimal amount) {
-        return documentRepository.getAllByAmountGreaterThan(
+        return documentRepository.findAllByAmountGreaterThan(
                 amount,
                 new PageRequest(pageNumber, 5, Sort.Direction.ASC, "enterDate"));
     }

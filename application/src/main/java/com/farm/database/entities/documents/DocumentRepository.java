@@ -10,5 +10,7 @@ import java.math.BigDecimal;
 @Transactional
 public interface DocumentRepository extends PagingAndSortingRepository<Document, Long> {
 
-    Page<Document> getAllByAmountGreaterThan(BigDecimal amount, Pageable pageable);
+    Page<Document> findAllByAmountGreaterThan(BigDecimal amount, Pageable pageable);
+    Page<Document> findAllByOrderByEnterDateAsc(Pageable pageable);
+    Page<Document> findAllByOrderByEnterDateDesc(Pageable pageable);
 }

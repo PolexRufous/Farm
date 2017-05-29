@@ -50,10 +50,10 @@ public class DocumentRestEndpoint {
                 .orElse(ResponseEntity.noContent().build());
     }
 
-    @GetMapping("/page")
+    @GetMapping("/recent")
     @CrossOrigin
-    public ResponseEntity getFirstFiveByDate() {
-        return Optional.of(documentProcess.getFirsFiveByDate())
+    public ResponseEntity getLastFiveByDate() {
+        return Optional.of(documentProcess.getLastFiveByDate())
                 .filter(Slice::hasContent)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.noContent().build());
