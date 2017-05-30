@@ -3,6 +3,7 @@ package com.farm.database.utilits
 import com.farm.database.entities.accounts.Account
 import com.farm.executors.validators.OperationSufficientFundsValidator
 import com.farm.executors.validators.ValidationError
+import com.farm.executors.validators.ValidationResult
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
@@ -18,10 +19,10 @@ class OperationSufficientFundsValidatorSpec extends Specification {
         accountFrom.getBalance() >> BigDecimal.valueOf(amountOnFromAccount)
 
         when:
-        Map validationErrors = operationValidator.validate(accountFrom, BigDecimal.valueOf(operationAmount))
+        ValidationResult validationResult = operationValidator.validate(accountFrom, BigDecimal.valueOf(operationAmount))
 
         then:
-        validationErrors.keySet().containsAll(expectedErrors)
+        validationResult.getErrorsMap().keySet().containsAll(expectedErrors)
 
         where:
         amountOnFromAccount | operationAmount | expectedErrors

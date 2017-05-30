@@ -5,7 +5,10 @@ import com.farm.database.entities.accounts.AccountType;
 import com.farm.database.entities.documents.Document;
 import com.farm.database.entities.operations.*;
 import com.farm.database.entities.personality.Partner;
+import com.farm.executors.validators.OperationForExecutionValidator;
 import com.farm.executors.validators.OperationSufficientFundsValidator;
+import com.farm.executors.validators.ValidationError;
+import com.farm.executors.validators.ValidationResult;
 import com.farm.processes.AccountProcess;
 import com.farm.processes.PartnerProcess;
 import junitparams.JUnitParamsRunner;
@@ -45,6 +48,8 @@ public class ExternalOperationExecutorTest {
     private PartnerProcess partnerProcess;
     @Mock
     private MessageSource messageSource;
+    @Spy
+    private OperationForExecutionValidator operationForExecutionValidator;
 
     @Captor
     private ArgumentCaptor<Operation> operationArgumentCaptor;
@@ -72,9 +77,9 @@ public class ExternalOperationExecutorTest {
         OperationExecutionParameters parameters = new OperationExecutionParameters()
                 .setId(1L)
                 .setCheckFundsNeeded(checkFunds);
-        Map<String, String> fundsValidationErrors = Collections.emptyMap();
-        if (!enoughFunds) {
-            fundsValidationErrors = Collections.singletonMap("error", "error");
+        ValidationResult validationResultWithError = new ValidationResult();
+        if(!enoughFunds) {
+            validationResultWithError.addError(ValidationError.INSUFFICIENT_FUNDS);
         }
 
         Operation savedOperation = null;
@@ -96,7 +101,7 @@ public class ExternalOperationExecutorTest {
         when(operationExecutionParametersRepository.findByOperationType(any(OperationType.class)))
                 .thenReturn(parameters);
         when(operationSufficientFundsValidator.validate(any(Account.class), any(BigDecimal.class)))
-                .thenReturn(fundsValidationErrors);
+                .thenReturn(validationResultWithError);
         when(operationRepository.findOne(1L)).thenReturn(savedOperation);
         when(operationRepository.save(operationArgumentCaptor.capture())).thenReturn(savedOperation);
 

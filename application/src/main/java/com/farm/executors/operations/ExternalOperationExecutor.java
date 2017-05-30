@@ -3,12 +3,13 @@ package com.farm.executors.operations;
 import com.farm.database.entities.accounts.Account;
 import com.farm.database.entities.documents.Document;
 import com.farm.database.entities.operations.*;
+import com.farm.executors.validators.OperationForExecutionValidator;
 import com.farm.executors.validators.OperationSufficientFundsValidator;
+import com.farm.executors.validators.ValidationResult;
 import com.farm.processes.AccountProcess;
 import com.farm.processes.PartnerProcess;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.*;
+
+import static org.apache.commons.collections4.MapUtils.*;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -29,6 +32,8 @@ public class ExternalOperationExecutor implements OperationExecutor {
     @NonNull
     private OperationSufficientFundsValidator operationSufficientFundsValidator;
     @NonNull
+    private OperationForExecutionValidator operationForExecutionValidator;
+    @NonNull
     private AccountProcess accountProcess;
     @NonNull
     private PartnerProcess partnerProcess;
@@ -38,37 +43,11 @@ public class ExternalOperationExecutor implements OperationExecutor {
     @Override
     @Transactional
     public OperationExecutionResult execute(@Valid Operation operation) {
-        Map<String, String> errors = new HashMap<>();
-
         Operation originalOperation = operationRepository.findOne(operation.getId());
-
-        if (Objects.isNull(operation.getFactCommitDate())) {
-            //TODO try to use properties
-            errors.put("factCommitDate", "должно быть задано");
+        ValidationResult validationResult = validateOperation(operation, originalOperation);
+        if (validationResult.hasErrors()) {
+            return new OperationExecutionResult(null, validationResult.getErrorsMap());
         }
-        if (Objects.isNull(originalOperation)) {
-            //TODO try to use parameters
-            errors.put("id", "Операция с указанным ID не найдена");
-        }
-
-        if (Objects.nonNull(originalOperation)) {
-            OperationExecutionParameters parameters =
-                    operationExecutionParametersRepository.findByOperationType(originalOperation.getOperationType());
-            //TODO create implementation of different amounts which don't mach original amount
-            if (parameters.isCheckFundsNeeded()) {
-                errors.putAll(operationSufficientFundsValidator.validate(
-                        originalOperation.getAccountFrom(),
-                        originalOperation.getAmount()));
-            }
-            if (Objects.nonNull(originalOperation.getFactCommitDate())) {
-                errors.put("id", "Операция с указанным ID уже проведена");
-            }
-        }
-
-        if (MapUtils.isNotEmpty(errors)) {
-            return new OperationExecutionResult(null, errors);
-        }
-
         originalOperation.setFactCommitDate(operation.getFactCommitDate());
         transferFunds(
                 originalOperation.getAccountFrom(),
@@ -77,6 +56,24 @@ public class ExternalOperationExecutor implements OperationExecutor {
         );
 
         return new OperationExecutionResult(operationRepository.save(originalOperation), Collections.emptyMap());
+    }
+
+    private ValidationResult validateOperation(Operation operation, Operation originalOperation) {
+        ValidationResult validationResult = new ValidationResult();
+
+        validationResult.addAll(operationForExecutionValidator.validate(operation, originalOperation));
+
+        if (Objects.nonNull(originalOperation)) {
+            OperationExecutionParameters parameters =
+                    operationExecutionParametersRepository.findByOperationType(originalOperation.getOperationType());
+            //TODO create implementation of different amounts which don't mach original amount
+            if (parameters.isCheckFundsNeeded()) {
+                validationResult.addAll(operationSufficientFundsValidator.validate(
+                        originalOperation.getAccountFrom(),
+                        originalOperation.getAmount()));
+            }
+        }
+        return validationResult;
     }
 
     @Override

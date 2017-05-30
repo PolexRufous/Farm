@@ -5,6 +5,7 @@ import com.farm.database.entities.accounts.AccountType
 import com.farm.database.entities.documents.Document
 import com.farm.database.entities.operations.*
 import com.farm.database.entities.personality.Partner
+import com.farm.executors.validators.OperationForExecutionValidator
 import com.farm.executors.validators.OperationSufficientFundsValidator
 import com.farm.processes.AccountProcess
 import com.farm.processes.PartnerProcess
@@ -27,12 +28,14 @@ class ExternalOperationExecutorSpec extends Specification {
     def accountProcess = Mock(AccountProcess)
     def partnerProcess = Stub(PartnerProcess)
     def messageSource = Stub(MessageSource)
+    def operationForExecutionValidator = Spy(OperationForExecutionValidator)
 
     def setup() {
         externalOperationExecutor = new ExternalOperationExecutor(
                 operationRepository,
                 operationExecutionParametersRepository,
                 operationSufficientFundsValidator,
+                operationForExecutionValidator,
                 accountProcess,
                 partnerProcess,
                 messageSource
