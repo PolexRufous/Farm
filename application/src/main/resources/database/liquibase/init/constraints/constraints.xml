@@ -17,4 +17,18 @@
         <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="account" constraintName="fkmvaer7xbwxjv05r4w9po78c3u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
         <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="operation" constraintName="fks8tfq4exf2cmvb2q1wmg8uxkw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="partner"/>
     </changeSet>
+    <changeSet author="PolexRufous" id="initial-sequence">
+        <createTable tableName="hibernate_sequence">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="next_val" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="hibernate_sequence">
+            <column name="id" valueNumeric="1"/>
+            <column name="next_val" value="1"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
