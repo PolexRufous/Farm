@@ -1,0 +1,70 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="KarenAsmarian" id="createUsersTable">
+        <createTable tableName="USER">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="LOGIN" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_EXPIRATION_DATE" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD_EXPIRATION_DATE" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOCKED" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="USER">
+            <column name="ID" valueNumeric="1"/>
+            <column name="LOGIN" value="user"/>
+            <column name="PASSWORD" value="123"/>
+            <column name="ACCOUNT_EXPIRATION_DATE" value="2030-01-01 00:00"/>
+            <column name="PASSWORD_EXPIRATION_DATE" value="2030-01-01 00:00"/>
+            <column name="LOCKED" valueBoolean="false"/>
+            <column name="ENABLED" valueBoolean="true"/>
+        </insert>
+        <insert tableName="USER">
+            <column name="ID" valueNumeric="2"/>
+            <column name="LOGIN" value="admin"/>
+            <column name="PASSWORD" value="123"/>
+            <column name="ACCOUNT_EXPIRATION_DATE" value="2030-01-01 00:00"/>
+            <column name="PASSWORD_EXPIRATION_DATE" value="2030-01-01 00:00"/>
+            <column name="LOCKED" valueBoolean="false"/>
+            <column name="ENABLED" valueBoolean="true"/>
+        </insert>
+        <createTable tableName="ROLES">
+            <column name="ROLE" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="USER_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+        <insert tableName="ROLES">
+            <column name="ROLE" value="USER"/>
+            <column name="USER_ID" value="1"/>
+        </insert>
+        <insert tableName="ROLES">
+            <column name="ROLE" value="ADMIN"/>
+            <column name="USER_ID" value="2"/>
+        </insert>
+        <insert tableName="ROLES">
+            <column name="ROLE" value="USER"/>
+            <column name="USER_ID" value="2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
